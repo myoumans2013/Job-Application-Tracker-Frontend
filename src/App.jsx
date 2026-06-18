@@ -2,28 +2,20 @@ import './App.css'
 import {useEffect, useState} from "react";
 import Header from "./Header.jsx";
 import ApplicationCard from "./ApplicationCard.jsx";
+import ApplicationForm from "./ApplicationForm.jsx";
 
 function App() {
 
-    const [applications, setApplications] = useState([{
-        id: 1,
-        companyName: "Lockheed Martin",
-        jobTitle: "Junior Java Developer",
-        dateApplied: "2020-03-01",
-        jobLink: "https://junior.io/",
-        notes: "Applied",
-        status: "INTERVIEWING",
-        interviewCount: 2
-    }])
+    const [applications, setApplications] = useState([])
 
-
-    const [newCompanyName, setNewCompanyName] = useState("");
-    const [newJobTitle, setNewJobTitle] = useState("");
-    const [newDate, setNewDate] = useState("");
-    const [newStatus, setNewStatus] = useState("");
-    const [newJobLink, setNewJobLink] = useState("");
-    const [newNote, setNewNote] = useState("");
-
+    const [newApplication, setNewApplication] = useState({
+        companyName: "",
+        jobTitle: "",
+        dateApplied: "",
+        jobLink: "",
+        notes: "",
+        status: "APPLIED"
+    });
 
     useEffect(() => {
         fetch("http://localhost:8080/api/applications")
@@ -35,14 +27,6 @@ function App() {
     // Creates a new Job application when submitted
     function handleSubmit(e) {
         e.preventDefault()
-        const newApplication = {
-            companyName: newCompanyName,
-            status: newStatus,
-            jobTitle: newJobTitle,
-            dateApplied: newDate,
-            jobLink: newJobLink,
-            notes: newNote,
-        };
         console.log(newApplication)
 
         fetch("http://localhost:8080/api/applications", {
@@ -60,7 +44,7 @@ function App() {
                 return response.json();
             })
             .then((savedApplication) => {
-                setApplications([...applications, savedApplication]);
+                setApplications([...newApplication, savedApplication]);
             })
             .catch((error) => {
                 console.error(error);
@@ -92,70 +76,13 @@ function App() {
                     applications={applications}
                     handleDelete={handleDelete}
                 />
+                <ApplicationForm
+                    handleSubmit={handleSubmit}
+                    newApplication={newApplication}
+                    setNewApplication={setNewApplication}
+                />
             </>
 
-            <form className={"form-card"}
-                  onSubmit={handleSubmit}>
-                <h2>Create new Application</h2>
-                <label>
-                    Company Name: <input className={"input-box"} type={"text"} name={"companyName"}
-                                         value={newCompanyName}
-                                         onChange={(e) => setNewCompanyName(e.target.value)}>
-                </input>
-                    <p>
-
-                    </p>
-                </label>
-                <label>
-                    Job Title: <input className={"input-box"} type={"text"} name={"jobTitle"}
-                                      value={newJobTitle}
-                                      onChange={(e) => setNewJobTitle(e.target.value)}>
-                </input>
-                    <p>
-
-                    </p>
-                </label>
-                <label>
-                    Status: <select className={"input-box"} value={newStatus}
-                                    onChange={(e) => setNewStatus(e.target.value)}>
-                    <option value="APPLIED">APPLIED</option>
-                    <option value="INTERVIEWING">INTERVIEWING</option>
-                    <option value="OFFER">OFFER</option>
-                    <option value="REJECTED">REJECTED</option>
-                    <option value="GHOSTED">GHOSTED</option>
-                </select>
-                    <p>
-
-                    </p>
-                </label>
-                <label>
-                    Date: <input className={"input-box"} type={"date"} name={"dateApplied"} value={newDate}
-                                 onChange={(e) => setNewDate(e.target.value)}>
-                </input>
-                    <p>
-
-                    </p>
-                </label>
-                <label>
-                    Notes: <input className={"input-box"} type={"text"} name={"notes"} value={newNote}
-                                  onChange={(e) => setNewNote(e.target.value)}>
-                </input>
-                    <p>
-
-                    </p>
-                </label>
-                <label>
-                    Job Link: <input className={"input-box input-box input"} type={"text"} name={"jobLink"}
-                                     value={newJobLink}
-                                     onChange={(e) => setNewJobLink(e.target.value)}>
-                </input>
-                    <p>
-
-                    </p>
-                </label>
-
-                <button className={"button"} type="submit"> Submit</button>
-            </form>
 
             <footer style={{textAlign: "center"}}>
                 <p className={"main-card"}>Made by Michael</p>
