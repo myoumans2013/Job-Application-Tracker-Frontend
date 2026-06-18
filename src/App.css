@@ -1,15 +1,50 @@
 .application-card {
     padding: 10px 20px;
     list-style: none;
+    border-radius: 5px;
 }
 
 .application-individual-card {
-    padding: 15px;
-    border: 1px solid lightgray;
+    padding: 5px;
+    border: 2px solid lightgray;
     margin: 20px auto;
     max-width: 350px;
+    border-radius: 5px;
+    text-align: center;
 }
 
 .main-card {
     padding: 40px;
+    background-color: #070513;
+    color: white;
+}
+
+.input-box {
+    max-width: 400px;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 5px;
+
+}
+
+.scroll-container {
+    height: 635px;
+    overflow-y: scroll;
+    border: 2px solid lightgray;
+    margin-inline: 200px;
+}
+
+
+.form-card {
+    align-content: center;
+    display: grid;
+    place-items: center;
+    margin-inline: 200px;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+}
+
+.button {
+    border-radius: 5px;
+    border: 10px #c40000;
 }
