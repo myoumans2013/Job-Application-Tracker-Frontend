@@ -1,6 +1,7 @@
 import './App.css'
 import {useEffect, useState} from "react";
 import Header from "./Header.jsx";
+import ApplicationCard from "./ApplicationCard.jsx";
 
 function App() {
 
@@ -15,7 +16,6 @@ function App() {
         interviewCount: 2
     }])
 
-    const [status, setStatus] = useState("APPLIED");
 
     const [newCompanyName, setNewCompanyName] = useState("");
     const [newJobTitle, setNewJobTitle] = useState("");
@@ -86,24 +86,13 @@ function App() {
 
     return (
         <div className={"main-card"}>
-            <Header/>
-            <ul className={"application-card scroll-container"}>
-                <h1 style={{textAlign: "center"}}>Applications
-                </h1>
-                {applications.map((application) => (
-                    <li className={"application-individual-card"} key={application.id}>
-                        <p><strong>Company Name:</strong> {application.companyName}</p>
-                        <p><strong>Job Title:</strong> {application.jobTitle}</p>
-                        <p><strong>Date Applied:</strong> {application.dateApplied}</p>
-                        <p><strong>Status:</strong> {application.status}</p>
-                        <p><strong>Job Link:</strong> {application.jobLink}</p>
-                        <p><strong>Notes:</strong> {application.notes}</p>
-                        <p><strong>Interview Count:</strong> {application.interviewCount}</p>
-                        <button className={"button"} onClick={() => handleDelete(application.id)}> Delete</button>
-                    </li>
-                ))}
-
-            </ul>
+            <>
+                <Header/>
+                <ApplicationCard
+                    applications={applications}
+                    handleDelete={handleDelete}
+                />
+            </>
 
             <form className={"form-card"}
                   onSubmit={handleSubmit}>
@@ -127,7 +116,7 @@ function App() {
                     </p>
                 </label>
                 <label>
-                    Status: <select className={"input-box"} name={"status"} value={newStatus}
+                    Status: <select className={"input-box"} value={newStatus}
                                     onChange={(e) => setNewStatus(e.target.value)}>
                     <option value="APPLIED">APPLIED</option>
                     <option value="INTERVIEWING">INTERVIEWING</option>
