@@ -7,8 +7,10 @@ import Footer from "./Footer.jsx";
 
 function App() {
 
+    // Stores applications from database
     const [applications, setApplications] = useState([])
 
+    // Create applications from user
     const [newApplication, setNewApplication] = useState({
         companyName: "",
         jobTitle: "",
@@ -18,6 +20,7 @@ function App() {
         status: "APPLIED"
     });
 
+    // Fetches applications from Spring Boot API
     useEffect(() => {
         fetch("http://localhost:8080/api/applications")
             .then(response => response.json())
@@ -52,6 +55,7 @@ function App() {
             });
     }
 
+    // Fetches the delete method from Job Application Controller, filters job application and removes it
     const handleDelete = (id) => {
 
         fetch(`http://localhost:8080/api/applications/${id}`,
