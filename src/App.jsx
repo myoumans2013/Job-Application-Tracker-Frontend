@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import Header from "./Header.jsx";
 import ApplicationCard from "./ApplicationCard.jsx";
 import ApplicationForm from "./ApplicationForm.jsx";
+import Footer from "./Footer.jsx";
 
 function App() {
 
@@ -81,12 +82,8 @@ function App() {
                     newApplication={newApplication}
                     setNewApplication={setNewApplication}
                 />
+                <Footer/>
             </>
-
-
-            <footer style={{textAlign: "center"}}>
-                <p className={"main-card"}>Made by Michael</p>
-            </footer>
         </div>
     )
 }
