@@ -1,4 +1,65 @@
-/*
-Global styling
- */
+.main-card {
+    padding: 40px;
+    background-color: #070513;
+    color: white;
+    display: grid;
+    place-items: center;
+}
 
+.application-card {
+    padding: 10px 20px;
+    list-style: none;
+    width: 400px;
+    border: 3px solid white;
+    border-radius: 10px;
+    height: 635px;
+    overflow-y: scroll;
+}
+
+.application-individual-card {
+    padding: 5px;
+    border: 2px solid #3a3636;
+    margin-top: 15px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.application-form-card {
+    padding: 5px;
+    border: 3px solid white;
+    border-radius: 10px;
+    width: 430px;
+}
+
+.input-container {
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-container-input-box {
+    border-radius: 10px;
+    padding: 5px;
+    width: 250px;
+    margin-left: auto;
+}
+
+.text-before-input-box {
+    font-size: 18px;
+}
+
+.button {
+    border-radius: 5px;
+    border: 10px #c40000;
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+h2 {
+    text-align: center;
+    font-size: 24px;
+    color: lightblue;
+}

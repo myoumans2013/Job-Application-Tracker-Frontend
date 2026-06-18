@@ -1,9 +1,9 @@
 function ApplicationCard({applications, handleDelete}) {
     return (
 
-        <ul className={"application-card scroll-container"}>
-            <h1 style={{textAlign: "center"}}>Applications
-            </h1>
+        <ul className={"application-card"}>
+            <h2>Applications
+            </h2>
             {applications.map((application) => (
                 <li className={"application-individual-card"} key={application.id}>
                     <p><strong>Company Name:</strong> {application.companyName}</p>

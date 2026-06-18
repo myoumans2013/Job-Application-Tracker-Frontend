@@ -1,4 +1,3 @@
-import './App.css'
 import {useEffect, useState} from "react";
 import Header from "./Header.jsx";
 import ApplicationCard from "./ApplicationCard.jsx";
