@@ -4,6 +4,7 @@
     color: white;
     display: grid;
     place-items: center;
+    font: 14px/1.5 "Calibri", sans-serif;
 }
 
 .application-card {
@@ -14,6 +15,7 @@
     border-radius: 10px;
     height: 635px;
     overflow-y: scroll;
+    margin-bottom: 40px;
 }
 
 .application-individual-card {
@@ -44,10 +46,17 @@
     padding: 5px;
     width: 250px;
     margin-left: auto;
+    box-sizing: border-box;
 }
 
 .text-before-input-box {
     font-size: 18px;
+    color: honeydew;
+}
+
+.application-card-info {
+    color: cornsilk;
+    font-size: 16px;
 }
 
 .button {
@@ -62,4 +71,10 @@ h2 {
     text-align: center;
     font-size: 24px;
     color: lightblue;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }

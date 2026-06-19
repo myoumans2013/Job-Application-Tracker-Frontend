@@ -1,7 +1,7 @@
 function Footer() {
     return (
-        <footer style={{textAlign: "center"}}>
-            <p className={"main-card"}>Made by Michael</p>
+        <footer style={{textAlign: "center", fontSize: "18px"}}>
+            <p className={"main-card"}>Made by Michael Youmans</p>
         </footer>
     )
 }

@@ -6,9 +6,9 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
               onSubmit={handleSubmit}>
             <h2>Create new Application</h2>
             <label className={"input-container"}>
-                <text className={"text-before-input-box"}>
+                <span className={"text-before-input-box"}>
                     Company Name:
-                </text>
+                </span>
                 <input className={"input-container-input-box"} type={"text"} name={"companyName"}
                        value={newApplication.companyName}
                        onChange={(e) => setNewApplication({
@@ -21,9 +21,9 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
                 </p>
             </label>
             <label className={"input-container"}>
-                <text className={"text-before-input-box"}>
+                <span className={"text-before-input-box"}>
                     Job Title:
-                </text>
+                </span>
                 <input className={"input-container-input-box"} type={"text"} name={"jobTitle"}
                        value={newApplication.jobTitle}
                        onChange={(e) => setNewApplication({...newApplication, jobTitle: e.target.value})}>
@@ -34,9 +34,9 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
 
             </label>
             <label className={"input-container"}>
-                <text className={"text-before-input-box"}>
+                <span className={"text-before-input-box"}>
                     Status:
-                </text>
+                </span>
                 <select className={"input-container-input-box"} value={newApplication.status}
                         onChange={(e) => setNewApplication({...newApplication, status: e.target.value})}>
                     <option value="APPLIED">APPLIED</option>
@@ -50,9 +50,9 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
                 </p>
             </label>
             <label className={"input-container"}>
-                <text className={"text-before-input-box"}>
+                <span className={"text-before-input-box"}>
                     Date:
-                </text>
+                </span>
                 <input className={"input-container-input-box"} type={"date"} name={"dateApplied"}
                        value={setNewApplication.dateApplied}
                        onChange={(e) => setNewApplication({...newApplication, dateApplied: e.target.value})}>
@@ -62,9 +62,9 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
                 </p>
             </label>
             <label className={"input-container"}>
-                <text className={"text-before-input-box"}>
+                <span className={"text-before-input-box"}>
                     Notes:
-                </text>
+                </span>
                 <input className={"input-container-input-box"} type={"text"} name={"notes"}
                        value={setNewApplication.notes}
                        onChange={(e) => setNewApplication({...newApplication, notes: e.target.value})}>
@@ -74,9 +74,9 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
                 </p>
             </label>
             <label className={"input-container"}>
-                <text className={"text-before-input-box"}>
+                <span className={"text-before-input-box"}>
                     Job Link:
-                </text>
+                </span>
                 <input className={"input-container-input-box"} type={"text"} name={"jobLink"}
                        value={setNewApplication.jobLink}
                        onChange={(e) => setNewApplication({...newApplication, jobLink: e.target.value})}>
