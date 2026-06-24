@@ -21,7 +21,7 @@ function App() {
 
     // Fetches applications from Spring Boot API
     useEffect(() => {
-        fetch("http://localhost:8080/api/applications")
+        fetch("https://spring-boot-job-application-api.onrender.com/api/applications")
             .then(response => response.json())
             .then(data => setApplications(data))
             .catch(error => console.log(error));
@@ -33,7 +33,7 @@ function App() {
         console.log(newApplication)
         window.location.reload();
 
-        fetch("http://localhost:8080/api/applications", {
+        fetch("https://spring-boot-job-application-api.onrender.com/api/applications", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -58,7 +58,7 @@ function App() {
     // Fetches the delete method from Job Application Controller, filters job application and removes it
     const handleDelete = (id) => {
 
-        fetch(`http://localhost:8080/api/applications/${id}`,
+        fetch(`https://spring-boot-job-application-api.onrender.com/api/applications/${id}`,
             {
                 method: "DELETE"
             })

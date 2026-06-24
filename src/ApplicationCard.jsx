@@ -27,7 +27,7 @@ function ApplicationCard({applications, handleDelete}) {
         const fetchData = async () => {
             try {
                 setIsLoading(true);
-                const response = await fetch("http://localhost:8080/api/interviews");
+                const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/interviews");
                 if (!response.ok) {
                     throw new Error("Failed to grab data.")
                 }
@@ -52,7 +52,7 @@ function ApplicationCard({applications, handleDelete}) {
             ...newInterview,
             jobApplicationId: id,
         };
-        const response = await fetch(`http://localhost:8080/api/interviews/${id}`, {
+        const response = await fetch(`https://spring-boot-job-application-api.onrender.com/api/interviews/${id}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
