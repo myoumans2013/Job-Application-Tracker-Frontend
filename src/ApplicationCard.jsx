@@ -47,6 +47,7 @@ function ApplicationCard({applications, handleDelete}) {
     // Creating interviews under job applications
     const handleSubmitInterview = async (e, id) => {
         e.preventDefault();
+        window.location.reload();
         const interviewToSend = {
             ...newInterview,
             jobApplicationId: id,
@@ -65,8 +66,6 @@ function ApplicationCard({applications, handleDelete}) {
 
     // Deleting individual interviews
     const handleDeleteInterview = (id) => {
-
-        window.location.reload();
 
         fetch(`http://localhost:8080/api/interviews/deleteJobInterviewsByJobAppId/${id}`, {
             method: "DELETE"
@@ -89,7 +88,10 @@ function ApplicationCard({applications, handleDelete}) {
     </p>
 
     return (
+
         <ul className="application-card">
+            {/* Displaying Job Applications */}
+
             <span># of Applications - ({applicationCount})</span>
             <h2>Applications</h2>
 
@@ -99,7 +101,10 @@ function ApplicationCard({applications, handleDelete}) {
                 });
 
                 return (
+
+
                     <li className="application-individual-card" key={application.id}>
+
 
                         <div style={{
                             textAlign: "left",
@@ -143,6 +148,8 @@ function ApplicationCard({applications, handleDelete}) {
                                 <strong className="text-before-input-box">Interview Count: </strong>
                                 <span className="application-card-info">{application.interviewCount}</span>
                             </p>
+
+                            {/* Displaying interviews if exist */}
                             {matchingInterviews.length > 0 && (
                                 <details>
 
@@ -201,7 +208,7 @@ function ApplicationCard({applications, handleDelete}) {
 
                                                 <p>
                                                     <button className="button"
-                                                            onClick={() => handleDeleteInterview(application.id)}>Delete
+                                                            onClick={() => handleDeleteInterview(interview.id)}>Delete
                                                     </button>
                                                 </p>
 
@@ -212,6 +219,8 @@ function ApplicationCard({applications, handleDelete}) {
 
 
                             )}
+
+                            {/* Interview Form */}
 
                             <details>
                                 <summary style={{

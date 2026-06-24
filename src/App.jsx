@@ -31,6 +31,7 @@ function App() {
     function handleSubmit(e) {
         e.preventDefault()
         console.log(newApplication)
+        window.location.reload();
 
         fetch("http://localhost:8080/api/applications", {
             method: "POST",

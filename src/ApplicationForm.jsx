@@ -4,7 +4,7 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
 
         <form className={"application-form-card"}
               onSubmit={handleSubmit}>
-            <h2>Create new Application</h2>
+            <h2>Create new Job Application</h2>
             <label className={"input-container"}>
                 <span className={"text-before-input-box"}>
                     Company Name:
