@@ -1,24 +1,72 @@
 import {useEffect, useState} from "react";
 
 function ApplicationCard({applications, handleDelete}) {
+    // fetching backend interview objects
     const [interviews, setInterviews] = useState([]);
+
+    // creating new interviews
+    const [newInterview, setNewInterview] = useState({
+        interviewDate: "",
+        interviewerName: "",
+        interviewerType: "",
+        notes: "",
+    });
+
     const applicationCount = applications.length;
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState();
 
 
     useEffect(() => {
         console.log("Interview state updated:", interviews);
     }, [interviews]);
 
+    // fetches interview objects
     useEffect(() => {
-        fetch("http://localhost:8080/api/interviews")
-            .then(res => res.json())
-            .then(data => {
-                setInterviews(data);
-            })
-            .catch(error => console.log(error));
+        const fetchData = async () => {
+            try {
+                setIsLoading(true);
+                const response = await fetch("http://localhost:8080/api/interviews");
+                if (!response.ok) {
+                    throw new Error("Failed to grab data.")
+                }
+                const json = await response.json();
+                console.log("Fetched interview JSON:", json);
+                setInterviews(json);
+            } catch (e) {
+                setError(e.message);
+            } finally {
+                setIsLoading(false)
+            }
+        };
+        fetchData();
+
     }, []);
 
+    // Creating interviews under job applications
+    const handleSubmitInterview = async (e, id) => {
+        e.preventDefault();
+        const interviewToSend = {
+            ...newInterview,
+            jobApplicationId: id,
+        };
+        const response = await fetch(`http://localhost:8080/api/interviews/${id}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(interviewToSend)
+        })
+        const data = await response.json();
+        setInterviews([...interviews, data]);
+
+    }
+
+    // Deleting individual interviews
     const handleDeleteInterview = (id) => {
+
+        window.location.reload();
 
         fetch(`http://localhost:8080/api/interviews/deleteJobInterviewsByJobAppId/${id}`, {
             method: "DELETE"
@@ -32,6 +80,13 @@ function ApplicationCard({applications, handleDelete}) {
             }))
     }
 
+    if (error) return <p>
+        There was an error: {error}
+    </p>
+
+    if (isLoading) return <p>
+        Loading...
+    </p>
 
     return (
         <ul className="application-card">
@@ -155,10 +210,107 @@ function ApplicationCard({applications, handleDelete}) {
                                     </ul>
                                 </details>
 
+
                             )}
+
+                            <details>
+                                <summary style={{
+                                    marginBottom: "10px",
+                                    fontStyle: "italic",
+                                    fontSize: "17px",
+                                    color: "honeydew"
+                                }}>
+                                    Create new Interview
+                                </summary>
+                                <form onSubmit={(e) => handleSubmitInterview(e, application.id)}>
+
+                                    <ul style={{
+                                        borderRadius: "10px",
+                                        listStyleType: "none",
+                                        border: "1px solid white",
+                                        marginBottom: "10px",
+                                        textAlign: "center"
+                                    }}>
+                                        <h2>Create new Interview</h2>
+                                        <label className={"input-container"}>
+                                        <span className={"text-before-input-box"}>
+                                            Interview Date:
+                                        </span>
+                                            <input className={"interview-input-box"} type={"date"}
+                                                   name={"interviewerDate"}
+                                                   value={newInterview.interviewDate}
+                                                   onChange={(e) => setNewInterview({
+                                                       ...newInterview,
+                                                       interviewDate: e.target.value
+                                                   })}>
+                                            </input>
+                                            <p>
+
+                                            </p>
+                                        </label>
+                                        <label className={"input-container"}>
+                                        <span className={"text-before-input-box"}>
+                                            Interviewer Name:
+
+                                    </span>
+                                            <input className={"interview-input-box"} type={"text"}
+                                                   name={"interviewerName"}
+                                                   value={newInterview.interviewerName}
+                                                   onChange={(e) => setNewInterview({
+                                                       ...newInterview,
+                                                       interviewerName: e.target.value
+                                                   })}>
+                                            </input>
+                                            <p>
+
+                                            </p>
+
+                                        </label>
+                                        <label className={"input-container"}>
+                                        <span className={"text-before-input-box"}>
+                                            Interviewer Type:
+                                        </span>
+                                            <input className={"interview-input-box"}
+                                                   value={newInterview.interviewerType}
+                                                   onChange={(e) => setNewInterview({
+                                                       ...newInterview,
+                                                       interviewerType: e.target.value
+                                                   })}>
+                                            </input>
+                                            <p>
+
+                                            </p>
+                                        </label>
+                                        <label className={"input-container"}>
+                                        <span className={"text-before-input-box"}>
+                                            Notes:
+                                        </span>
+                                            <input className={"interview-input-box"} type={"text"}
+                                                   name={"notes"}
+                                                   value={newInterview.notes}
+                                                   onChange={(e) => setNewInterview({
+                                                       ...newInterview,
+                                                       notes: e.target.value
+                                                   })}>
+                                            </input>
+                                            <p>
+
+                                            </p>
+                                        </label>
+
+                                        <button
+                                            className="button"
+                                            type={"submit"}>
+                                            Submit
+                                        </button>
+                                    </ul>
+                                </form>
+
+                            </details>
                             <button className="button" onClick={() => handleDelete(application.id)}>
                                 Delete
                             </button>
+
                         </div>
                     </li>
 
