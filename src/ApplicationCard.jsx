@@ -67,7 +67,7 @@ function ApplicationCard({applications, handleDelete}) {
     // Deleting individual interviews
     const handleDeleteInterview = (id) => {
 
-        fetch(`http://localhost:8080/api/interviews/deleteJobInterviewsByJobAppId/${id}`, {
+        fetch(`https://spring-boot-job-application-api.onrender.com/${id}`, {
             method: "DELETE"
         })
             .then((response => {
