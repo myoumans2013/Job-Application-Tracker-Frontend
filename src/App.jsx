@@ -85,7 +85,7 @@ function App() {
         <div className={"main-card"}>
             <>
                 <Header/>
-                <button className={"button"} onClick={wakeBackendUp}>
+                <button className={"button"} onClick={() => wakeBackendUp}>
                     Wake-up Backend
                 </button>
                 <ApplicationCard
