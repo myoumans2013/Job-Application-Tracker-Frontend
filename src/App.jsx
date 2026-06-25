@@ -77,6 +77,7 @@ function App() {
 
     const wakeBackendUp = async () => {
         try {
+            console.log("Waking up Backend...Please wait")
             const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/applications/health", {
                 method: "GET"
             })
