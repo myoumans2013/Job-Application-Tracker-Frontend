@@ -19,6 +19,8 @@ function App() {
         status: "APPLIED"
     });
 
+    const [error, setError] = useState();
+
     // Fetches applications from Spring Boot API
     useEffect(() => {
         fetch("https://spring-boot-job-application-api.onrender.com/api/applications")
@@ -74,18 +76,28 @@ function App() {
     }
 
     const wakeBackendUp = async () => {
-        const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/applications/health", {
-            method: "GET"
-        })
-        const data = await response.text()
-        console.log(data)
+        try {
+            const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/applications/health", {
+                method: "GET"
+            })
+            const data = await response.text()
+            console.log(data)
+        } catch (e) {
+            setError(e.message)
+        }
+    }
+
+    if (error) {
+        return <div>
+            There was an error: {error}
+        </div>
     }
 
     return (
         <div className={"main-card"}>
             <>
                 <Header/>
-                <button className={"button"} onClick={() => wakeBackendUp}>
+                <button className={"button"} onClick={wakeBackendUp}>
                     Wake-up Backend
                 </button>
                 <ApplicationCard
