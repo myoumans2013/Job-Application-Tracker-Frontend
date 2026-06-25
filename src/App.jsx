@@ -73,10 +73,21 @@ function App() {
             })
     }
 
+    const wakeBackendUp = async () => {
+        const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/health", {
+            method: "GET"
+        })
+        const data = await response.text()
+        console.log(data)
+    }
+
     return (
         <div className={"main-card"}>
             <>
                 <Header/>
+                <button className={"button"} onClick={wakeBackendUp}>
+                    Wake-up Backend
+                </button>
                 <ApplicationCard
                     applications={applications}
                     handleDelete={handleDelete}
