@@ -74,7 +74,7 @@ function App() {
     }
 
     const wakeBackendUp = async () => {
-        const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/health", {
+        const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/applications/health", {
             method: "GET"
         })
         const data = await response.text()
