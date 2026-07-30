@@ -47,7 +47,6 @@ function ApplicationCard({applications, handleDelete}) {
     // Creating interviews under job applications
     const handleSubmitInterview = async (e, id) => {
         e.preventDefault();
-        window.location.reload();
         const interviewToSend = {
             ...newInterview,
             jobApplicationId: id,

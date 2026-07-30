@@ -1,5 +1,12 @@
 function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
 
+    const handleOnChange = (e) => {
+        setNewApplication({
+            ...newApplication,
+            [e.target.name]: e.target.value
+        })
+    }
+
     return (
 
         <form className={"application-form-card"}
@@ -11,10 +18,7 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
                 </span>
                 <input className={"input-container-input-box"} type={"text"} name={"companyName"}
                        value={newApplication.companyName}
-                       onChange={(e) => setNewApplication({
-                           ...newApplication,
-                           companyName: e.target.value
-                       })}>
+                       onChange={handleOnChange}>
                 </input>
                 <p>
 
@@ -26,7 +30,7 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
                 </span>
                 <input className={"input-container-input-box"} type={"text"} name={"jobTitle"}
                        value={newApplication.jobTitle}
-                       onChange={(e) => setNewApplication({...newApplication, jobTitle: e.target.value})}>
+                       onChange={handleOnChange}>
                 </input>
                 <p>
 
@@ -38,7 +42,7 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
                     Status:
                 </span>
                 <select className={"input-container-input-box"} value={newApplication.status}
-                        onChange={(e) => setNewApplication({...newApplication, status: e.target.value})}>
+                        onChange={handleOnChange}>
                     <option value="APPLIED">APPLIED</option>
                     <option value="INTERVIEWING">INTERVIEWING</option>
                     <option value="OFFER">OFFER</option>
@@ -54,8 +58,8 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
                     Date:
                 </span>
                 <input className={"input-container-input-box"} type={"date"} name={"dateApplied"}
-                       value={setNewApplication.dateApplied}
-                       onChange={(e) => setNewApplication({...newApplication, dateApplied: e.target.value})}>
+                       value={newApplication.dateApplied}
+                       onChange={handleOnChange}>
                 </input>
                 <p>
 
@@ -66,8 +70,8 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
                     Notes:
                 </span>
                 <input className={"input-container-input-box"} type={"text"} name={"notes"}
-                       value={setNewApplication.notes}
-                       onChange={(e) => setNewApplication({...newApplication, notes: e.target.value})}>
+                       value={newApplication.notes}
+                       onChange={handleOnChange}>
                 </input>
                 <p>
 
@@ -78,8 +82,8 @@ function ApplicationForm({handleSubmit, newApplication, setNewApplication}) {
                     Job Link:
                 </span>
                 <input className={"input-container-input-box"} type={"text"} name={"jobLink"}
-                       value={setNewApplication.jobLink}
-                       onChange={(e) => setNewApplication({...newApplication, jobLink: e.target.value})}>
+                       value={newApplication.jobLink}
+                       onChange={handleOnChange}>
                 </input>
                 <p>
 

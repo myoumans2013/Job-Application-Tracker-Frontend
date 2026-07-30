@@ -33,7 +33,6 @@ function App() {
     function handleSubmit(e) {
         e.preventDefault()
         console.log(newApplication)
-        window.location.reload();
 
         fetch("https://spring-boot-job-application-api.onrender.com/api/applications", {
             method: "POST",
@@ -50,7 +49,7 @@ function App() {
                 return response.json();
             })
             .then((savedApplication) => {
-                setApplications([...newApplication, savedApplication]);
+                setApplications([...applications, savedApplication]);
             })
             .catch((error) => {
                 console.error(error);
