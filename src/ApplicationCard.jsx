@@ -109,7 +109,7 @@ function ApplicationCard({applications, handleDelete}) {
                             textAlign: "left",
                             justifySelf: "start",
                             alignSelf: "center",
-                        }}>App Id: {application.id}</div>
+                        }}></div>
 
                         <div className={"application-text"}>
 
