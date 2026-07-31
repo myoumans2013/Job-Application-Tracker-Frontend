@@ -11,7 +11,7 @@ function ListApplicationsAndInterviews({applications, interviews}) {
         try {
             setLoading(true)
             const response = await fetch(
-                `https://spring-boot-job-application-api.onrender.com//deleteJobInterviewsByJobAppId/${id}`,
+                `https://spring-boot-job-application-api.onrender.com/api/interviews/deleteJobInterviewsByJobAppId/${id}`,
                 {
                     method: "DELETE"
                 }
