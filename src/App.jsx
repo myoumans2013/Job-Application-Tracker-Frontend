@@ -1,78 +1,67 @@
 import {useEffect, useState} from "react";
 import Header from "./Header.jsx";
-import ApplicationCard from "./ApplicationCard.jsx";
-import ApplicationForm from "./ApplicationForm.jsx";
+import ListApplicationsAndInterviews from "./ListApplicationsAndInterviews.jsx";
+import ApplicationForm from "./Forms/ApplicationForm.jsx";
 import Footer from "./Footer.jsx";
+import InterviewForm from "./Forms/InterviewForm.jsx";
 
 function App() {
 
-    // Stores applications from database
-    const [applications, setApplications] = useState([])
+    // States for applications
+    const [applications, setApplications] = useState([]);
+    const [appError, setAppError] = useState(false);
+    const [appIsLoading, setAppIsLoading] = useState(false);
 
-    // Create applications from user
-    const [newApplication, setNewApplication] = useState({
-        companyName: "",
-        jobTitle: "",
-        dateApplied: "",
-        jobLink: "",
-        notes: "",
-        status: "APPLIED"
-    });
+    // States for interviews
+    const [interviews, setInterviews] = useState([]);
+    const [interviewError, setInterviewError] = useState(false);
+    const [interviewIsLoading, setInterviewIsLoading] = useState(false);
 
-    const [error, setError] = useState();
+    // State for waking backend up
+    const [backendError, setBackendError] = useState(false);
 
     // Fetches applications from Spring Boot API
     useEffect(() => {
-        fetch("https://spring-boot-job-application-api.onrender.com/api/applications")
-            .then(response => response.json())
-            .then(data => setApplications(data))
-            .catch(error => console.log(error));
+        const fetchApplications = async () => {
+            try {
+                setAppIsLoading(true);
+                const response = fetch("https://spring-boot-job-application-api.onrender.com/api/applications")
+                if (!response.ok) {
+                    throw new Error("Failed to grab applications.")
+                }
+                const data = await response.json();
+                setApplications(data);
+            } catch (e) {
+                setAppError(e.message)
+            } finally {
+                setAppIsLoading(false);
+            }
+        }
+
+        fetchApplications();
     }, [])
 
-    // Creates a new Job application when submitted
-    function handleSubmit(e) {
-        e.preventDefault()
-        console.log(newApplication)
-
-        fetch("https://spring-boot-job-application-api.onrender.com/api/applications", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(newApplication)
-        })
-            .then((response) => {
+    // Fetches interviews from Spring Boot API
+    useEffect(() => {
+        const fetchInterviews = async () => {
+            try {
+                setInterviewIsLoading(true);
+                const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/interviews");
                 if (!response.ok) {
-                    throw new Error("Failed to create application");
+                    throw new Error("Failed to grab interviews.")
                 }
+                const json = await response.json();
+                setInterviews(json);
+            } catch (e) {
+                setInterviewError(e.message);
+            } finally {
+                setInterviewIsLoading(false)
+            }
+        };
+        fetchInterviews();
 
-                return response.json();
-            })
-            .then((savedApplication) => {
-                setApplications([...applications, savedApplication]);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
+    }, []);
 
-    // Fetches the delete method from Job Application Controller, filters job application and removes it
-    const handleDelete = (id) => {
-
-        fetch(`https://spring-boot-job-application-api.onrender.com/api/applications/${id}`,
-            {
-                method: "DELETE"
-            })
-            .then((response => {
-                if (!response.ok) {
-                    throw new Error("Failed to delete application");
-                }
-                setApplications(applications.filter((item) => item.id !== id));
-            }))
-            .catch((error) => {
-                error.message = "Failed to delete application";
-            })
-    }
 
     const wakeBackendUp = async () => {
         console.log("Waking up Backend...Please wait")
@@ -83,14 +72,15 @@ function App() {
             const data = await response.text()
             console.log(data)
         } catch (e) {
-            setError(e.message)
+            setBackendError(e.message)
         }
     }
 
-    if (error) {
-        return <div>
-            There was an error: {error}
-        </div>
+    if (appError || interviewError || backendError) {
+        return <div>There was an error: {appError || interviewError || backendError}</div>
+    }
+    if (appIsLoading || interviewIsLoading) {
+        return <div>Loading...</div>
     }
 
     return (
@@ -100,14 +90,17 @@ function App() {
                 <button className={"button"} onClick={wakeBackendUp}>
                     Wake-up Backend
                 </button>
-                <ApplicationCard
+                <ListApplicationsAndInterviews
                     applications={applications}
-                    handleDelete={handleDelete}
+                    interviews={interviews}
                 />
                 <ApplicationForm
-                    handleSubmit={handleSubmit}
-                    newApplication={newApplication}
-                    setNewApplication={setNewApplication}
+                    applications={applications}
+                    setApplications={setApplications}
+                />
+                <InterviewForm
+                    interviews={interviews}
+                    setInterviews={setInterviews}
                 />
                 <Footer/>
             </>
