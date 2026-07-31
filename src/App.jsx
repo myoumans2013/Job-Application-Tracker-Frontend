@@ -25,7 +25,7 @@ function App() {
         const fetchApplications = async () => {
             try {
                 setAppIsLoading(true);
-                const response = fetch("https://spring-boot-job-application-api.onrender.com/api/applications")
+                const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/applications")
                 if (!response.ok) {
                     throw new Error("Failed to grab applications.")
                 }
