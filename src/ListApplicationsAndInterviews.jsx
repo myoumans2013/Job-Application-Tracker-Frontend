@@ -117,6 +117,11 @@ function ListApplicationsAndInterviews({applications, interviews, setInterviews}
                                 <span className="application-card-info">{application.interviewCount}</span>
                             </p>
 
+                            <InterviewForm applicationId={application.id}
+                                           interviews={interviews}
+                                           setInterviews={setInterviews}
+                            />
+
                             {/* Displaying interviews if exist */}
                             {matchingInterviews.length > 0 && (
                                 <details>
@@ -173,11 +178,6 @@ function ListApplicationsAndInterviews({applications, interviews, setInterviews}
                                                     <strong className="text-before-input-box">Job Title: </strong>
                                                     <span className="application-card-info">{interview.jobTitle}</span>
                                                 </p>
-
-                                                <InterviewForm applicationId={application.id}
-                                                               interviews={interviews}
-                                                               setInterviews={setInterviews}
-                                                />
 
                                                 <p>
                                                     <button className="button"
