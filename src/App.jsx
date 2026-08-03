@@ -18,9 +18,6 @@ function App() {
     const [interviewError, setInterviewError] = useState("");
     const [interviewIsLoading, setInterviewIsLoading] = useState(false);
 
-    // State for waking backend up
-    const [backendError, setBackendError] = useState(false);
-
     // Fetches applications from Spring Boot API
     useEffect(() => {
         const fetchApplications = async () => {
@@ -57,33 +54,17 @@ function App() {
 
     }, []);
 
-    // Wakes up backend, need because of Render boot up wait time
-    const wakeBackendUp = async () => {
-        console.log("Waking up Backend...Please wait")
-        try {
-            const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/applications/health", {
-                method: "GET"
-            })
-            const data = await response.text()
-            console.log(data)
-        } catch (error) {
-            setBackendError(error.message)
-        }
-    }
 
-    if (appError || interviewError || backendError) {
-        return <div>There was an error: {appError || interviewError || backendError}</div>
+    if (appError || interviewError) {
+        return <div>There was an error: {appError || interviewError}</div>
     }
     if (appIsLoading || interviewIsLoading) {
-        return <div>Loading...</div>
+        return <div>Loading... Backend is waking up.</div>
     }
 
     return (
         <div className={"main-card"}>
             <Header/>
-            <button className={"button"} onClick={wakeBackendUp}>
-                Wake-up Backend
-            </button>
             <ApplicationContainer
                 applications={applications}
                 setApplications={setApplications}
