@@ -5,6 +5,15 @@ function ApplicationContainer({applications, setApplications, interviews, setInt
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
+    const handleDeleteApplicationAlert = (id) => {
+        const alert = window.alert("Are you sure you want to delete this?")
+        if (alert) {
+            void handleDeleteApplication(id)
+        } else {
+            return <div>Canceled.</div>
+        }
+    }
+    
     // Fetches the delete method from API, filters and removes it
     const handleDeleteApplication = async (id) => {
         try {
@@ -38,7 +47,7 @@ function ApplicationContainer({applications, setApplications, interviews, setInt
         <ApplicationList applications={applications}
                          interviews={interviews}
                          setInterviews={setInterviews}
-                         handleDeleteApplication={handleDeleteApplication}
+                         handleDeleteApplicationAlert={handleDeleteApplicationAlert}
         />
     )
 }

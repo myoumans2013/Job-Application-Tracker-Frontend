@@ -1,7 +1,7 @@
 import InterviewForm from "./InterviewForm.jsx";
 import InterviewList from "./InterviewList.jsx";
 
-function ApplicationList({applications, interviews, setInterviews, handleDeleteApplication}) {
+function ApplicationList({applications, interviews, setInterviews, handleDeleteApplicationAlert}) {
     const applicationCount = applications.length;
 
     return (
@@ -73,7 +73,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
                                 />
                             )}
 
-                            <button className="button" onClick={() => handleDeleteApplication(application.id)}>
+                            <button className="button" onClick={() => handleDeleteApplicationAlert(application.id)}>
                                 Delete
                             </button>
 
