@@ -4,7 +4,7 @@ import {useState} from "react";
 
 function ApplicationList({applications, interviews, setInterviews, handleDeleteApplication}) {
     const applicationCount = applications.length;
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(null);
 
     return (
 
@@ -57,7 +57,9 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
                             <p>
                                 <strong className="text-before-input-box">Interview Count: </strong>
                                 <span className="application-card-info">
-                                    {setCount(count + application.interviewCount)}</span>
+                                    {setCount(application.interviewCount)}
+                                    {count}
+                                </span>
                             </p>
 
                             {/* Display interview form */}
