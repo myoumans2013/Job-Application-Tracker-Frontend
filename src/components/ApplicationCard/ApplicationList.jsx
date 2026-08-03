@@ -2,7 +2,7 @@ import InterviewForm from "./InterviewForm.jsx";
 import InterviewList from "./InterviewList.jsx";
 
 function ApplicationList({applications, interviews, setInterviews, handleDeleteApplication}) {
-    let applicationCount = applications.length;
+    const applicationCount = applications.length;
 
     return (
 
@@ -19,12 +19,6 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
                 return (
 
                     <li className="application-individual-card" key={application.id}>
-
-                        <div style={{
-                            textAlign: "left",
-                            justifySelf: "start",
-                            alignSelf: "center",
-                        }}></div>
 
                         <div className={"application-text"}>
 

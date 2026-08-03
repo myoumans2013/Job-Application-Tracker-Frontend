@@ -1,101 +1,260 @@
-.main-card {
-    padding: 40px;
-    background-color: #121212;
-    color: white;
-    display: grid;
-    place-items: center;
-    font: 14px/1.5 "Calibri", sans-serif;
-}
-
-.application-card {
-    padding: 10px 20px;
-    list-style: none;
-    width: 400px;
-    border: 3px solid white;
-    border-radius: 10px;
-    height: 635px;
-    overflow-y: scroll;
-    margin-bottom: 40px;
-}
-
-.application-individual-card {
-    padding: 5px;
-    border: 2px solid #3a3636;
-    margin-top: 15px;
-    border-radius: 5px;
-    text-align: center;
-}
-
-.application-form-card {
-    padding: 5px;
-    border: 3px solid white;
-    border-radius: 10px;
-    width: 430px;
-}
-
-.interview-form-card {
-    padding: 5px;
-    border: 3px solid white;
-    border-radius: 10px;
-    width: 357px;
-    margin-bottom: 20px;
-}
-
-.input-container {
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.interview-input-box {
-    border-radius: 10px;
-    padding: 5px;
-    width: 200px;
-    margin-left: auto;
+* {
     box-sizing: border-box;
-}
-
-.input-container-input-box {
-    border-radius: 10px;
-    padding: 5px;
-    width: 250px;
-    margin-left: auto;
-    box-sizing: border-box;
-}
-
-.application-text {
-    transform: translateY(-10px);
-}
-
-.text-before-input-box {
-    font-size: 18px;
-    color: honeydew;
-}
-
-.application-card-info {
-    color: cornsilk;
-    font-size: 16px;
-}
-
-.button {
-    border-radius: 5px;
-    border: 10px #c40000;
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    margin-bottom: 10px;
-}
-
-h2 {
-    text-align: center;
-    font-size: 24px;
-    color: lightblue;
 }
 
 body {
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    min-height: 100vh;
+    background-color: #17212b;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+/* Main page container */
+.main-card {
+    width: min(1000px, 94%);
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 30px 20px;
+}
+
+/* Main applications list */
+.application-card {
+    width: 100%;
+    max-width: 750px;
+    max-height: 650px;
+    margin: 30px auto;
+    padding: 20px;
+    overflow-y: auto;
+    list-style: none;
+    background-color: #223142;
+    border: 2px solid #53687c;
+    border-radius: 10px;
+}
+
+/* Individual application */
+.application-individual-card {
+    margin-top: 18px;
+    padding: 20px;
+    background-color: #2d4054;
+    border: 1px solid #60788e;
+    border-radius: 8px;
+}
+
+.application-individual-card:first-of-type {
+    margin-top: 10px;
+}
+
+.application-text {
+    width: 100%;
+}
+
+.application-text p {
+    margin: 10px 0;
+    line-height: 1.5;
+}
+
+.application-card-info {
+    color: #f4ead5;
+    font-size: 16px;
+    overflow-wrap: anywhere;
+}
+
+/* Forms */
+.application-form-card {
+    width: 100%;
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 22px;
+    background-color: #223142;
+    border: 2px solid #53687c;
+    border-radius: 10px;
+}
+
+.interview-form-card {
+    width: 100%;
+    margin: 15px 0;
+    padding: 16px;
+    background-color: #26394b;
+    border: 1px solid #60788e;
+    border-radius: 8px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 14px;
+}
+
+.input-container-input-box,
+.interview-input-box {
+    width: 100%;
+    min-width: 0;
+    padding: 9px 10px;
+    margin-left: auto;
+    color: #1b1b1b;
+    background-color: #f4f4f4;
+    border: 1px solid #a5a5a5;
+    border-radius: 5px;
+}
+
+.input-container-input-box {
+    max-width: 430px;
+}
+
+.interview-input-box {
+    max-width: 330px;
+}
+
+.input-container-input-box:focus,
+.interview-input-box:focus {
+    border-color: #77a9cf;
+    outline: 2px solid rgba(119, 169, 207, 0.3);
+}
+
+/* Labels and displayed information */
+.text-before-input-box {
+    min-width: 145px;
+    color: #c9e4f2;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Buttons */
+.button {
+    display: block;
+    min-width: 110px;
+    margin: 14px auto 8px;
+    padding: 9px 16px;
+    color: white;
+    background-color: #367aa8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #2c678f;
+}
+
+.button:active {
+    transform: translateY(1px);
+}
+
+.button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+/* Headings */
+h1 {
+    margin: 15px 0 25px;
+    text-align: center;
+}
+
+h2 {
+    margin-top: 5px;
+    text-align: center;
+    color: #a9d5ec;
+    font-size: 24px;
+}
+
+/* Existing details elements */
+details {
+    margin: 18px 0;
+}
+
+summary {
+    margin-bottom: 12px;
+    color: #c9e4f2;
+    font-size: 17px;
+    font-style: italic;
+    cursor: pointer;
+}
+
+details ul {
+    padding: 14px;
+    list-style: none;
+    background-color: #26394b;
+    border: 1px solid #60788e;
+    border-radius: 8px;
+}
+
+details li {
+    padding: 12px;
+    border-bottom: 1px solid #53687c;
+}
+
+details li:last-child {
+    border-bottom: none;
+}
+
+/* Scrollbar */
+.application-card::-webkit-scrollbar {
+    width: 10px;
+}
+
+.application-card::-webkit-scrollbar-track {
+    background-color: #1b2936;
+    border-radius: 10px;
+}
+
+.application-card::-webkit-scrollbar-thumb {
+    background-color: #60788e;
+    border-radius: 10px;
+}
+
+/* Mobile layout */
+@media (max-width: 650px) {
+    .main-card {
+        width: 100%;
+        padding: 20px 12px;
+    }
+
+    .application-card,
+    .application-form-card {
+        padding: 14px;
+    }
+
+    .application-individual-card {
+        padding: 14px;
+    }
+
+    .input-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 6px;
+    }
+
+    .text-before-input-box {
+        min-width: 0;
+    }
+
+    .input-container-input-box,
+    .interview-input-box {
+        max-width: none;
+        margin-left: 0;
+    }
+
+    .button {
+        width: 100%;
+    }
+}
+
+header {
+    text-align: center;
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    font-size: 18px;
 }

@@ -8,8 +8,6 @@ function InterviewForm({interviews, setInterviews, applicationId}) {
         interviewerType: "",
         interviewerName: "",
         notes: "",
-        companyName: "",
-        jobTitle: "",
     })
 
     // Creates a new interview under each unique job application
@@ -28,6 +26,10 @@ function InterviewForm({interviews, setInterviews, applicationId}) {
                 },
                 body: JSON.stringify(interviewToSend)
             })
+            if (!response.ok) {
+                setError("Failed to create Interview.")
+                return;
+            }
             const data = await response.json();
             setInterviews([...interviews, data]);
         } catch (error) {
@@ -55,24 +57,13 @@ function InterviewForm({interviews, setInterviews, applicationId}) {
 
     return (
 
-        <details>
-            <summary style={{
-                marginBottom: "10px",
-                fontStyle: "italic",
-                fontSize: "17px",
-                color: "honeydew"
-            }}>
+        <details className="interview-form-card">
+            <summary>
                 Create new Interview
             </summary>
             <form onSubmit={(e) => handleSubmitInterview(e, applicationId)}>
 
-                <ul style={{
-                    borderRadius: "10px",
-                    listStyleType: "none",
-                    border: "1px solid white",
-                    marginBottom: "10px",
-                    textAlign: "center"
-                }}>
+                <ul>
                     <h2>Create new Interview</h2>
                     <label className={"input-container"}>
                                         <span className={"text-before-input-box"}>

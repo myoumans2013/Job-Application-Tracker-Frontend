@@ -27,6 +27,7 @@ function ApplicationForm({applications, setApplications}) {
             })
             if (!response.ok) {
                 setError("Failed to create application.")
+                return;
             }
             const data = await response.json();
             setApplications([...applications, data])

@@ -1,13 +1,14 @@
 import {useState} from "react";
 import ApplicationList from "./ApplicationList.jsx";
 
-function ApplicationCard({applications, setApplications, interviews, setInterviews}) {
+function ApplicationContainer({applications, setApplications, interviews, setInterviews}) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
     // Fetches the delete method from API, filters and removes it
     const handleDeleteApplication = async (id) => {
         try {
+            setLoading(true)
             const response = await fetch(
                 `https://spring-boot-job-application-api.onrender.com/api/applications/${id}`,
                 {
@@ -34,14 +35,12 @@ function ApplicationCard({applications, setApplications, interviews, setIntervie
     }
 
     return (
-        <>
-            <ApplicationList applications={applications}
-                             interviews={interviews}
-                             setInterviews={setInterviews}
-                             handleDeleteApplication={handleDeleteApplication}
-            />
-        </>
+        <ApplicationList applications={applications}
+                         interviews={interviews}
+                         setInterviews={setInterviews}
+                         handleDeleteApplication={handleDeleteApplication}
+        />
     )
 }
 
-export default ApplicationCard
+export default ApplicationContainer

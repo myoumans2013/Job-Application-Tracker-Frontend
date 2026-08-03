@@ -40,22 +40,12 @@ function InterviewList({matchingInterviews, interviews, setInterviews}) {
         <div>
             <details>
 
-                <summary style={{
-                    marginBottom: "10px",
-                    fontStyle: "italic",
-                    fontSize: "17px",
-                    color: "honeydew"
-                }}>Click to
+                <summary>
+                    Click to
                     view Interview(s)
                 </summary>
 
-                <ul style={{
-                    borderRadius: "10px",
-                    listStyleType: "none",
-                    border: "1px solid white",
-                    marginBottom: "10px",
-                    textAlign: "center"
-                }}>
+                <ul>
                     {matchingInterviews.map((interview) => (
                         <li key={interview.id}>
                             <p>
