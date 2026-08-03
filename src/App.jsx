@@ -1,10 +1,10 @@
 import {useEffect, useState} from "react";
 import Header from "./Header.jsx";
-import ListApplicationsAndInterviews from "./ListApplicationsAndInterviews.jsx";
-import ApplicationForm from "./Forms/ApplicationForm.jsx";
+import ApplicationForm from "./components/ApplicationForm.jsx";
 import Footer from "./Footer.jsx";
 import {getApplications} from "./api/applicationApi.js";
 import {getInterviews} from "./api/interviewApi.js";
+import ApplicationContainer from "./components/ApplicationCard/ApplicationContainer.jsx";
 
 function App() {
 
@@ -80,23 +80,22 @@ function App() {
 
     return (
         <div className={"main-card"}>
-            <>
-                <Header/>
-                <button className={"button"} onClick={wakeBackendUp}>
-                    Wake-up Backend
-                </button>
-                <ListApplicationsAndInterviews
-                    applications={applications}
-                    interviews={interviews}
-                    setInterviews={setInterviews}
-                />
-                <ApplicationForm
-                    applications={applications}
-                    setApplications={setApplications}
-                    interviews={interviews}
-                />
-                <Footer/>
-            </>
+            <Header/>
+            <button className={"button"} onClick={wakeBackendUp}>
+                Wake-up Backend
+            </button>
+            <ApplicationContainer
+                applications={applications}
+                setApplications={setApplications}
+                interviews={interviews}
+                setInterviews={setInterviews}
+            />
+            <ApplicationForm
+                applications={applications}
+                setApplications={setApplications}
+                interviews={interviews}
+            />
+            <Footer/>
         </div>
     )
 }

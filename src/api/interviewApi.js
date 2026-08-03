@@ -7,3 +7,7 @@ export const getInterviews = async () => {
 
     return response.json();
 }
+
+export const deleteInterview = async () => {
+
+}

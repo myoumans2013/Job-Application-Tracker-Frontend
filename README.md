@@ -31,7 +31,7 @@ src/
 ├── components/
 │   ├── Header
 │   ├── ApplicationForm
-│   ├── ListApplicationsAndInterviews
+│   ├── ApplicationList
 │   └── InterviewForm
 ├── App.jsx
 ├── App.css

@@ -7,7 +7,7 @@ function InterviewForm({interviews, setInterviews, applicationId}) {
         interviewDate: "",
         interviewerType: "",
         interviewerName: "",
-        interviewNotes: "",
+        notes: "",
         companyName: "",
         jobTitle: "",
     })
@@ -64,7 +64,7 @@ function InterviewForm({interviews, setInterviews, applicationId}) {
             }}>
                 Create new Interview
             </summary>
-            <form onSubmit={(e) => handleSubmitInterview(e, applicationId.id)}>
+            <form onSubmit={(e) => handleSubmitInterview(e, applicationId)}>
 
                 <ul style={{
                     borderRadius: "10px",
@@ -80,7 +80,7 @@ function InterviewForm({interviews, setInterviews, applicationId}) {
                                         </span>
                         <input className={"interview-input-box"}
                                type={"date"}
-                               name={"interviewerDate"}
+                               name={"interviewDate"}
                                value={newInterview.interviewDate}
                                onChange={handleOnChange}>
                         </input>
@@ -101,13 +101,13 @@ function InterviewForm({interviews, setInterviews, applicationId}) {
                         <p>
 
                         </p>
-
                     </label>
                     <label className={"input-container"}>
                                         <span className={"text-before-input-box"}>
                                             Interviewer Type:
                                         </span>
                         <input className={"interview-input-box"}
+                               name={"interviewerType"}
                                value={newInterview.interviewerType}
                                onChange={handleOnChange}>
                         </input>

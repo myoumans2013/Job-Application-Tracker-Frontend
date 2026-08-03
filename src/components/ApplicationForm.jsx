@@ -2,7 +2,7 @@ import {useState} from "react";
 
 function ApplicationForm({applications, setApplications}) {
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState()
+    const [error, setError] = useState("")
     const [newApplication, setNewApplication] = useState({
         companyName: " ",
         jobTitle: " ",
@@ -25,7 +25,10 @@ function ApplicationForm({applications, setApplications}) {
                 },
                 body: JSON.stringify(newApplication)
             })
-            const data = response.json();
+            if (!response.ok) {
+                setError("Failed to create application.")
+            }
+            const data = await response.json();
             setApplications([...applications, data])
         } catch (error) {
             setError(error.message)
@@ -59,7 +62,8 @@ function ApplicationForm({applications, setApplications}) {
                     Company Name:
                 </span>
                 <input className={"input-container-input-box"}
-                       type={"text"} name={"companyName"}
+                       type={"text"}
+                       name={"companyName"}
                        value={newApplication.companyName}
                        onChange={handleOnChange}>
                 </input>
@@ -72,7 +76,8 @@ function ApplicationForm({applications, setApplications}) {
                     Job Title:
                 </span>
                 <input className={"input-container-input-box"}
-                       type={"text"} name={"jobTitle"}
+                       type={"text"}
+                       name={"jobTitle"}
                        value={newApplication.jobTitle}
                        onChange={handleOnChange}>
                 </input>
@@ -86,6 +91,7 @@ function ApplicationForm({applications, setApplications}) {
                     Status:
                 </span>
                 <select className={"input-container-input-box"}
+                        name={"status"}
                         value={newApplication.status}
                         onChange={handleOnChange}>
                     <option value="APPLIED">APPLIED</option>
@@ -103,7 +109,8 @@ function ApplicationForm({applications, setApplications}) {
                     Date:
                 </span>
                 <input className={"input-container-input-box"}
-                       type={"date"} name={"dateApplied"}
+                       type={"date"}
+                       name={"dateApplied"}
                        value={newApplication.dateApplied}
                        onChange={handleOnChange}>
                 </input>
@@ -116,7 +123,8 @@ function ApplicationForm({applications, setApplications}) {
                     Notes:
                 </span>
                 <input className={"input-container-input-box"}
-                       type={"text"} name={"notes"}
+                       type={"text"}
+                       name={"notes"}
                        value={newApplication.notes}
                        onChange={handleOnChange}>
                 </input>
@@ -129,7 +137,8 @@ function ApplicationForm({applications, setApplications}) {
                     Job Link:
                 </span>
                 <input className={"input-container-input-box"}
-                       type={"text"} name={"jobLink"}
+                       type={"text"}
+                       name={"jobLink"}
                        value={newApplication.jobLink}
                        onChange={handleOnChange}>
                 </input>
