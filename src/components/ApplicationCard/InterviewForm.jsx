@@ -52,7 +52,7 @@ function InterviewForm({interviews, setInterviews, applicationId}) {
         return <div>There was an error: {error}</div>
     }
     if (loading) {
-        return <div>:Loading...</div>
+        return <div></div>
     }
 
     return (
