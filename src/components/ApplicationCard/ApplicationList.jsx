@@ -1,10 +1,8 @@
 import InterviewForm from "./InterviewForm.jsx";
 import InterviewList from "./InterviewList.jsx";
-import {useState} from "react";
 
 function ApplicationList({applications, interviews, setInterviews, handleDeleteApplication}) {
     const applicationCount = applications.length;
-    const [count, setCount] = useState(null);
 
     return (
 
@@ -57,8 +55,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
                             <p>
                                 <strong className="text-before-input-box">Interview Count: </strong>
                                 <span className="application-card-info">
-                                    {setCount(application.interviewCount)}
-                                    {count}
+                                    {matchingInterviews.length}
                                 </span>
                             </p>
 
