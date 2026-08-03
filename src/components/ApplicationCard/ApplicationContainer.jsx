@@ -5,12 +5,12 @@ function ApplicationContainer({applications, setApplications, interviews, setInt
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
-    const handleDeleteApplicationAlert = (id) => {
+    const handleDeleteApplicationAlert = async (id) => {
         const isConfirmed = window.confirm("Are you sure you want to delete this?");
         if (isConfirmed) {
-            void handleDeleteApplication(id)
+            await handleDeleteApplication(id);
         } else {
-            return <div>Deletion canceled.</div>
+            window.alert("Deletion cancelled.")
         }
     }
 
