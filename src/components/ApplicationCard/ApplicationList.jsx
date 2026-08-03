@@ -8,7 +8,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
 
         <ul className="application-card">
             {/* Displaying Job Applications */}
-            <span># of Applications - ({applicationCount})</span>
+            <span>Total Applications - ({applicationCount})</span>
             <h2>Applications</h2>
 
             {applications.map((application) => {
