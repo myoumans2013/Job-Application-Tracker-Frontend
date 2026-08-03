@@ -3,6 +3,8 @@ import Header from "./Header.jsx";
 import ListApplicationsAndInterviews from "./ListApplicationsAndInterviews.jsx";
 import ApplicationForm from "./Forms/ApplicationForm.jsx";
 import Footer from "./Footer.jsx";
+import {getApplications} from "./api/applicationApi.js";
+import {getInterviews} from "./api/interviewApi.js";
 
 function App() {
 
@@ -24,12 +26,8 @@ function App() {
         const fetchApplications = async () => {
             try {
                 setAppIsLoading(true);
-                const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/applications")
-                if (!response.ok) {
-                    setAppError("Failed to grab applications.");
-                    return;
-                }
-                const data = await response.json();
+                // Fetch application data through the API service
+                const data = await getApplications();
                 setApplications(data);
             } catch (error) {
                 setAppError(error.message)
@@ -46,12 +44,8 @@ function App() {
         const fetchInterviews = async () => {
             try {
                 setInterviewIsLoading(true);
-                const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/interviews");
-                if (!response.ok) {
-                    setInterviewError("Failed to grab interviews.");
-                    return;
-                }
-                const json = await response.json();
+                // Fetch interview data through the API service
+                const json = await getInterviews();
                 setInterviews(json);
             } catch (error) {
                 setInterviewError(error.message);
