@@ -32,7 +32,7 @@ function InterviewList({matchingInterviews, interviews, setInterviews}) {
         return <div>There was an error: {error}</div>
     }
     if (loading) {
-        return <div>:Loading...</div>
+        return <div></div>
     }
 
 
