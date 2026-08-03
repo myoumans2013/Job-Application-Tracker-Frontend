@@ -31,7 +31,7 @@ function ApplicationContainer({applications, setApplications, interviews, setInt
         return <div>There was an error: {error}</div>
     }
     if (loading) {
-        return <div>:Loading...</div>
+        return <div>Updating...</div>
     }
 
     return (
