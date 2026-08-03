@@ -2,7 +2,7 @@ import {useState} from "react";
 
 function ApplicationForm({applications, setApplications}) {
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
+    const [error, setError] = useState()
     const [newApplication, setNewApplication] = useState({
         companyName: " ",
         jobTitle: " ",
@@ -27,8 +27,8 @@ function ApplicationForm({applications, setApplications}) {
             })
             const data = response.json();
             setApplications([...applications, data])
-        } catch (e) {
-            setError(e.message)
+        } catch (error) {
+            setError(error.message)
         } finally {
             setLoading(false)
         }

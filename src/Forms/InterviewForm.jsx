@@ -2,7 +2,7 @@ import {useState} from "react";
 
 function InterviewForm({interviews, setInterviews, applicationId}) {
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
+    const [error, setError] = useState("")
     const [newInterview, setNewInterview] = useState({
         interviewDate: "",
         interviewerType: "",
@@ -30,8 +30,8 @@ function InterviewForm({interviews, setInterviews, applicationId}) {
             })
             const data = await response.json();
             setInterviews([...interviews, data]);
-        } catch (e) {
-            setError(e.message)
+        } catch (error) {
+            setError(error.message)
         } finally {
             setLoading(false)
         }

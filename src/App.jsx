@@ -8,12 +8,12 @@ function App() {
 
     // States for applications
     const [applications, setApplications] = useState([]);
-    const [appError, setAppError] = useState(false);
+    const [appError, setAppError] = useState("");
     const [appIsLoading, setAppIsLoading] = useState(false);
 
     // States for interviews
     const [interviews, setInterviews] = useState([]);
-    const [interviewError, setInterviewError] = useState(false);
+    const [interviewError, setInterviewError] = useState("");
     const [interviewIsLoading, setInterviewIsLoading] = useState(false);
 
     // State for waking backend up
@@ -26,18 +26,19 @@ function App() {
                 setAppIsLoading(true);
                 const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/applications")
                 if (!response.ok) {
-                    throw new Error("Failed to grab applications.")
+                    setAppError("Failed to grab applications.");
+                    return;
                 }
                 const data = await response.json();
                 setApplications(data);
-            } catch (e) {
-                setAppError(e.message)
+            } catch (error) {
+                setAppError(error.message)
             } finally {
                 setAppIsLoading(false);
             }
         }
 
-        fetchApplications();
+        void fetchApplications();
     }, [])
 
     // Fetches interviews from Spring Boot API
@@ -47,17 +48,18 @@ function App() {
                 setInterviewIsLoading(true);
                 const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/interviews");
                 if (!response.ok) {
-                    throw new Error("Failed to grab interviews.")
+                    setInterviewError("Failed to grab interviews.");
+                    return;
                 }
                 const json = await response.json();
                 setInterviews(json);
-            } catch (e) {
-                setInterviewError(e.message);
+            } catch (error) {
+                setInterviewError(error.message);
             } finally {
                 setInterviewIsLoading(false)
             }
         };
-        fetchInterviews();
+        void fetchInterviews();
 
     }, []);
 
@@ -70,8 +72,8 @@ function App() {
             })
             const data = await response.text()
             console.log(data)
-        } catch (e) {
-            setBackendError(e.message)
+        } catch (error) {
+            setBackendError(error.message)
         }
     }
 

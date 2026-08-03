@@ -3,7 +3,7 @@ import InterviewForm from "./Forms/InterviewForm.jsx";
 
 function ListApplicationsAndInterviews({applications, interviews, setInterviews}) {
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(false)
+    const [error, setError] = useState("")
     const applicationCount = applications.length;
 
     // Deleting individual interviews
@@ -17,7 +17,8 @@ function ListApplicationsAndInterviews({applications, interviews, setInterviews}
                 }
             );
             if (!response.ok) {
-                throw new Error("Interview was unable to be deleted.");
+                setError("Interview was unable to be deleted.");
+                return;
             }
             interviews(interviews.filter((interview) => interview.id !== id));
 
@@ -38,7 +39,8 @@ function ListApplicationsAndInterviews({applications, interviews, setInterviews}
                 }
             );
             if (!response.ok) {
-                throw new Error("Failed to delete application");
+                setError("Failed to delete application");
+                return;
             }
             applications(applications.filter((item) => item.id !== id));
         } catch (error) {
