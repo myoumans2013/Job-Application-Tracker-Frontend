@@ -3,7 +3,6 @@ import Header from "./Header.jsx";
 import ListApplicationsAndInterviews from "./ListApplicationsAndInterviews.jsx";
 import ApplicationForm from "./Forms/ApplicationForm.jsx";
 import Footer from "./Footer.jsx";
-import InterviewForm from "./Forms/InterviewForm.jsx";
 
 function App() {
 
@@ -93,14 +92,12 @@ function App() {
                 <ListApplicationsAndInterviews
                     applications={applications}
                     interviews={interviews}
+                    setInterviews={setInterviews}
                 />
                 <ApplicationForm
                     applications={applications}
                     setApplications={setApplications}
-                />
-                <InterviewForm
                     interviews={interviews}
-                    setInterviews={setInterviews}
                 />
                 <Footer/>
             </>

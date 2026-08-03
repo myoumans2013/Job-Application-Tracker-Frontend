@@ -1,6 +1,7 @@
 # Job Application Tracker Frontend
 
-A React + Vite frontend for managing job applications and interviews. The application communicates with a Spring Boot REST API and is deployed on Render.
+A React + Vite frontend for managing job applications and interviews. The application communicates with a Spring Boot
+REST API and is deployed on Render.
 
 ## Tech Stack
 
@@ -30,7 +31,7 @@ src/
 ├── components/
 │   ├── Header
 │   ├── ApplicationForm
-│   ├── ApplicationCard
+│   ├── ListApplicationsAndInterviews
 │   └── InterviewForm
 ├── App.jsx
 ├── App.css
@@ -59,4 +60,6 @@ npm run dev
 
 ## Project Purpose
 
-This project was built to strengthen full-stack development skills by connecting a React frontend to a Spring Boot REST API. It demonstrates component-based UI development, state management, API communication, CRUD operations, and deployment using Render and Supabase.
+This project was built to strengthen full-stack development skills by connecting a React frontend to a Spring Boot REST
+API. It demonstrates component-based UI development, state management, API communication, CRUD operations, and
+deployment using Render and Supabase.

@@ -1,7 +1,7 @@
 import {useState} from "react";
 import InterviewForm from "./Forms/InterviewForm.jsx";
 
-function ListApplicationsAndInterviews({applications, interviews}) {
+function ListApplicationsAndInterviews({applications, interviews, setInterviews}) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(false)
     const applicationCount = applications.length;
@@ -174,7 +174,10 @@ function ListApplicationsAndInterviews({applications, interviews}) {
                                                     <span className="application-card-info">{interview.jobTitle}</span>
                                                 </p>
 
-                                                <InterviewForm applicationId={application.id}/>
+                                                <InterviewForm applicationId={application.id}
+                                                               interviews={interviews}
+                                                               setInterviews={setInterviews}
+                                                />
 
                                                 <p>
                                                     <button className="button"
