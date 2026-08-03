@@ -6,7 +6,7 @@ function ListApplicationsAndInterviews({applications, interviews, setInterviews}
     const [error, setError] = useState("")
     const applicationCount = applications.length;
 
-    // Deleting individual interviews
+    // Deletes individual interviews by ID
     const handleDeleteInterview = async (id) => {
         try {
             setLoading(true)
@@ -29,7 +29,7 @@ function ListApplicationsAndInterviews({applications, interviews, setInterviews}
         }
     };
 
-    // Fetches the delete method from Job Application Controller, filters job application and removes it
+    // Fetches the delete method from API, filters and removes it
     const handleDeleteApplication = async (id) => {
         try {
             const response = await fetch(

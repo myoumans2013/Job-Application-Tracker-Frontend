@@ -63,7 +63,7 @@ function App() {
 
     }, []);
 
-
+    // Wakes up backend, need because of Render boot up wait time
     const wakeBackendUp = async () => {
         console.log("Waking up Backend...Please wait")
         try {

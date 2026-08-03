@@ -12,7 +12,7 @@ function ApplicationForm({applications, setApplications}) {
         status: "APPLIED"
     });
 
-    // Creates a new Job application when submitted
+    // Creates a new Job application
     const handleSubmitApplication = async (e) => {
         e.preventDefault()
 

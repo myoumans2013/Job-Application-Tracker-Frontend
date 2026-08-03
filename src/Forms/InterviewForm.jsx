@@ -12,7 +12,7 @@ function InterviewForm({interviews, setInterviews, applicationId}) {
         jobTitle: "",
     })
 
-    // Creating interviews under job applications
+    // Creates a new interview under each unique job application
     const handleSubmitInterview = async (e, id) => {
         e.preventDefault();
         try {
