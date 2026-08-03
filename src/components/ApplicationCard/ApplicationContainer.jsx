@@ -7,11 +7,10 @@ function ApplicationContainer({applications, setApplications, interviews, setInt
 
     const handleDeleteApplicationAlert = async (id) => {
         const isConfirmed = window.confirm("Are you sure you want to delete this?");
-        if (isConfirmed) {
-            await handleDeleteApplication(id);
-        } else {
-            window.alert("Deletion cancelled.")
+        if (!isConfirmed) {
+            return;
         }
+        await handleDeleteApplication(id);
     }
 
     // Fetches the delete method from API, filters and removes it
