@@ -6,14 +6,14 @@ function ApplicationContainer({applications, setApplications, interviews, setInt
     const [error, setError] = useState("")
 
     const handleDeleteApplicationAlert = (id) => {
-        const alert = window.alert("Are you sure you want to delete this?")
-        if (alert) {
+        const isConfirmed = window.confirm("Are you sure you want to delete this?");
+        if (isConfirmed) {
             void handleDeleteApplication(id)
         } else {
-            return <div>Canceled.</div>
+            return <div>Deletion canceled.</div>
         }
     }
-    
+
     // Fetches the delete method from API, filters and removes it
     const handleDeleteApplication = async (id) => {
         try {
