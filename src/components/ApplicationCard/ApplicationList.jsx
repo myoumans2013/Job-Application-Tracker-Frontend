@@ -21,7 +21,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
     const handleSelectStatus = async (status) => {
         try {
             setLoading(true)
-            const response = await fetch(`https://job-application-tracker-frontend-2o21.onrender.com/status/${status}`);
+            const response = await fetch(`https://job-application-tracker-frontend-2o21.onrender.com/api/applications/status/${status}`);
             if (!response.ok) {
                 throw new Error("Failed to find applications.")
             }
