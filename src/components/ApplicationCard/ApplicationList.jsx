@@ -4,12 +4,24 @@ import InterviewList from "./InterviewList.jsx";
 function ApplicationList({applications, interviews, setInterviews, handleDeleteApplicationAlert}) {
     const applicationCount = applications.length;
 
+    const findAppsByStatus = async () => {
+        const applications = applications.map((application) => {
+            if (application.status === 'APPLIED') {
+                return <div>
+                    {applications}
+                </div>
+            }
+        })
+    }
+
     return (
 
         <ul className="application-card">
             {/* Displaying Job Applications */}
             <span>Total Applications - ({applicationCount})</span>
             <h2>Applications</h2>
+
+            <button onClick={findAppsByStatus}>APPLIED</button>
 
             {applications.map((application) => {
                 const matchingInterviews = interviews.filter((interview) => {
