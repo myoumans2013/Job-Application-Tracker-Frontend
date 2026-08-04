@@ -184,6 +184,17 @@ textarea {
     opacity: 0.6;
 }
 
+.retry-error-button {
+    min-width: 50px;
+    padding: 5px 16px;
+    color: white;
+    background-color: #367aa8;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 15px;
+}
+
 /* Headings */
 h1 {
     margin: 15px 0 25px;

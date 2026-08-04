@@ -2,7 +2,13 @@ import InterviewForm from "./InterviewForm.jsx";
 import InterviewList from "./InterviewList.jsx";
 import {useState} from "react";
 
-function ApplicationList({applications, interviews, setInterviews, handleDeleteApplicationAlert}) {
+function ApplicationList({
+                             applications,
+                             interviews,
+                             setInterviews,
+                             handleDeleteApplicationAlert,
+                             handleRetryApplications
+                         }) {
     const [status, setStatus] = useState("")
     const [statusApplications, setStatusApplications] = useState([])
     const [loading, setLoading] = useState(false)
@@ -32,7 +38,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
             setLoading(true)
             const response = await fetch(`https://spring-boot-job-application-api.onrender.com/api/applications/status/${status}`);
             if (!response.ok) {
-                setError("Failed to find applications.")
+                setError('failed to find applications with the status: ' + status)
                 return;
             }
             const data = await response.json()
@@ -45,7 +51,9 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
     }
 
     if (error) {
-        return <div>There was an error: {error}</div>
+        return <div>There was an error - {error}
+            <button className={"retry-error-button"} onClick={handleRetryApplications}>Retry</button>
+        </div>
     }
     if (loading) {
         return <div>Updating...</div>

@@ -18,23 +18,25 @@ function App() {
     const [interviewError, setInterviewError] = useState("");
     const [interviewIsLoading, setInterviewIsLoading] = useState(false);
 
+    const fetchApplications = async () => {
+        try {
+            setAppIsLoading(true);
+            // Fetch application data through the API service
+            const data = await getApplications();
+            setApplications(data);
+        } catch (error) {
+            setAppError(error.message)
+        } finally {
+            setAppIsLoading(false);
+        }
+    }
+
     // Fetches applications from Spring Boot API
     useEffect(() => {
-        const fetchApplications = async () => {
-            try {
-                setAppIsLoading(true);
-                // Fetch application data through the API service
-                const data = await getApplications();
-                setApplications(data);
-            } catch (error) {
-                setAppError(error.message)
-            } finally {
-                setAppIsLoading(false);
-            }
-        }
-
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         void fetchApplications();
     }, [])
+
 
     // Fetches interviews from Spring Boot API
     useEffect(() => {
@@ -54,9 +56,14 @@ function App() {
 
     }, []);
 
+    const handleRetryApplications = () => {
+        setAppIsLoading(true);
+        void fetchApplications();
+    }
 
     if (appError || interviewError) {
-        return <div>There was an error: {appError || interviewError}</div>
+        return <div>There was an error: {appError || interviewError}
+        </div>
     }
     if (appIsLoading || interviewIsLoading) {
         return <div>Loading... Backend is waking up.</div>
@@ -70,6 +77,7 @@ function App() {
                 setApplications={setApplications}
                 interviews={interviews}
                 setInterviews={setInterviews}
+                handleRetryApplications={handleRetryApplications}
             />
             <ApplicationForm
                 applications={applications}
