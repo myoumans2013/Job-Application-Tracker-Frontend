@@ -9,10 +9,10 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
     const [error, setError] = useState("")
     const applicationCount = applications.length;
 
-    const handleOnChange = (e) => {
+    const handleOnChange = async (e) => {
         const selectedStatus = e.target.value
         setStatus(selectedStatus)
-        handleSelectStatus(status)
+        await handleSelectStatus(status)
     }
 
     const applicationsToDisplay = statusApplications.length > 0 ? statusApplications :
@@ -20,7 +20,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
 
     const handleSelectStatus = async (status) => {
         console.log(status)
-        
+
         try {
             setLoading(true)
             const response = await fetch(`https://spring-boot-job-application-api.onrender.com/api/applications/status/${status}`);
