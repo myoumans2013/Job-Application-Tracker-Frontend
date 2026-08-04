@@ -19,6 +19,8 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
         applications;
 
     const handleSelectStatus = async (status) => {
+        console.log(status)
+        
         try {
             setLoading(true)
             const response = await fetch(`https://spring-boot-job-application-api.onrender.com/api/applications/status/${status}`);
