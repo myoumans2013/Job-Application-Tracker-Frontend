@@ -9,19 +9,23 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
     const [error, setError] = useState("")
     const applicationCount = applications.length;
 
+    // If status is not an empty string, display applications on status
+    const applicationsToDisplay = status ? statusApplications :
+        applications;
+
+    // Set status back to an empty string/falsy
+    const handleShowAllButtonClick = () => {
+        setStatus("")
+    }
+
+    // Handle the target value for sorting by status
     const handleOnChange = async (e) => {
         const selectedStatus = e.target.value
         setStatus(selectedStatus)
         await handleSelectStatus(selectedStatus)
     }
 
-    const handleShowAllButtonClick = () => {
-        setStatus("")
-    }
-
-    const applicationsToDisplay = status ? statusApplications :
-        applications;
-
+    // Fetch applications based on status from API
     const handleSelectStatus = async (status) => {
         console.log(status);
         try {
