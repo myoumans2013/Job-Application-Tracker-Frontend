@@ -11,17 +11,19 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
 
     const handleOnChange = async (e) => {
         const selectedStatus = e.target.value
-        console.log(selectedStatus)
         setStatus(selectedStatus)
-        await handleSelectStatus(status)
+        await handleSelectStatus(selectedStatus)
     }
 
-    const applicationsToDisplay = statusApplications.length > 0 ? statusApplications :
+    const handleShowAllButtonClick = () => {
+        setStatus("")
+    }
+
+    const applicationsToDisplay = status ? statusApplications :
         applications;
 
     const handleSelectStatus = async (status) => {
-        console.log(status)
-
+        console.log(status);
         try {
             setLoading(true)
             const response = await fetch(`https://spring-boot-job-application-api.onrender.com/api/applications/status/${status}`);
@@ -54,15 +56,19 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
             <span>Total Applications - ({applicationCount})</span>
             <h2>Applications</h2>
 
-            <select className={"input-container-input-box"}
-                    onChange={handleOnChange}>
-                <option value="">Select status</option>
-                <option value="APPLIED">Applied</option>
-                <option value="INTERVIEWING">Interviewing</option>
-                <option value="OFFER">Offer</option>
-                <option value="REJECTED">Rejected</option>
-                <option value="GHOSTED">Ghosted</option>
-            </select>
+            <div className={"row-container"}>
+                <select className={"input-container-status-box"}
+                        onChange={handleOnChange}>
+                    <option value="">Filter By Status</option>
+                    <option value="APPLIED">Applied</option>
+                    <option value="INTERVIEWING">Interviewing</option>
+                    <option value="OFFER">Offer</option>
+                    <option value="REJECTED">Rejected</option>
+                    <option value="GHOSTED">Ghosted</option>
+                </select>
+
+                <button className={"show-all-button"} onClick={handleShowAllButtonClick}>Show all</button>
+            </div>
 
             {applicationsToDisplay.map((application) => {
                 const matchingInterviews = interviews.filter((interview) => {

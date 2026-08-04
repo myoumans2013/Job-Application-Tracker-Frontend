@@ -94,6 +94,36 @@ textarea {
     margin-bottom: 14px;
 }
 
+.row-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    font-weight: bold
+}
+
+.input-container-status-box {
+    width: 150px;
+    min-width: 0;
+    padding: 9px 10px;
+    color: #1b1b1b;
+    background-color: #f4f4f4;
+    border: 1px solid #a5a5a5;
+    border-radius: 5px;
+    margin-left: auto;
+}
+
+.show-all-button {
+    width: 100px;
+    min-width: 0;
+    padding: 9px 10px;
+    color: #1b1b1b;
+    background-color: #f4f4f4;
+    border: 1px solid #a5a5a5;
+    border-radius: 5px;
+}
+
 .input-container-input-box,
 .interview-input-box {
     width: 100%;
