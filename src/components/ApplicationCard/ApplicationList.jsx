@@ -1,34 +1,71 @@
 import InterviewForm from "./InterviewForm.jsx";
 import InterviewList from "./InterviewList.jsx";
+import {useState} from "react";
 
 function ApplicationList({applications, interviews, setInterviews, handleDeleteApplicationAlert}) {
+    const [status, setStatus] = useState("")
+    const [statusApplications, setStatusApplications] = useState([])
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
     const applicationCount = applications.length;
 
-    const findAppsByStatus = async () => {
-        const applications = applications.map((application) => {
-            if (application.status === 'APPLIED') {
-                return <div>
-                    {applications}
-                </div>
-            }
-        })
+    const handleOnChange = (e) => {
+        const selectedStatus = e.target.value
+        setStatus(selectedStatus)
+        handleSelectStatus(status)
     }
 
+    const applicationsToDisplay = statusApplications.length > 0 ? statusApplications :
+        applications;
+
+    const handleSelectStatus = async (status) => {
+        try {
+            setLoading(true)
+            const response = await fetch(`https://job-application-tracker-frontend-2o21.onrender.com/status/${status}`);
+            if (!response.ok) {
+                throw new Error("Failed to find applications.")
+            }
+            const data = await response.json()
+            setStatusApplications(data)
+        } catch (e) {
+            setError(e.message)
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    if (error) {
+        return <div>There was an error: {error}</div>
+    }
+    if (loading) {
+        return <div>Updating...</div>
+    }
+
+
     return (
+
 
         <ul className="application-card">
             {/* Displaying Job Applications */}
             <span>Total Applications - ({applicationCount})</span>
             <h2>Applications</h2>
 
-            <button onClick={findAppsByStatus}>APPLIED</button>
+            <select onChange={handleOnChange}>
+                <option value="">Select status</option>
+                <option value="APPLIED">Applied</option>
+                <option value="INTERVIEWING">Interviewing</option>
+                <option value="OFFER">Offer</option>
+                <option value="REJECTED">Rejected</option>
+                <option value="GHOSTED">Ghosted</option>
+            </select>
 
-            {applications.map((application) => {
+            {applicationsToDisplay.map((application) => {
                 const matchingInterviews = interviews.filter((interview) => {
                     return interview.jobApplicationId === application.id;
                 });
 
                 return (
+
 
                     <li className="application-individual-card" key={application.id}>
 
