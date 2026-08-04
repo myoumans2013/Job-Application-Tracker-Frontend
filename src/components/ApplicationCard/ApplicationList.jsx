@@ -21,9 +21,10 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
     const handleSelectStatus = async (status) => {
         try {
             setLoading(true)
-            const response = await fetch(`https://job-application-tracker-frontend-2o21.onrender.com/api/applications/status/${status}`);
+            const response = await fetch(`https://spring-boot-job-application-api.onrender.com/api/applications/status/${status}`);
             if (!response.ok) {
                 setError("Failed to find applications.")
+                return;
             }
             const data = await response.json()
             setStatusApplications(data)
