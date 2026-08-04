@@ -6,13 +6,10 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
 
     const findAppsByStatus = (e) => {
         e.preventDefault();
-        const sortApplications = applications.map((application) => {
-            if (application.status === 'APPLIED') {
-                return <div>
-                    {sortApplications}
-                </div>
-            }
-        })
+        const sortApplications = applications.filter(application =>
+            application.status === 'APPLIED');
+
+        return <div>{sortApplications}</div>
     }
 
     return (
