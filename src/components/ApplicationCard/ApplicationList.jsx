@@ -4,7 +4,7 @@ import {useState} from "react";
 
 function ApplicationList({applications, interviews, setInterviews, handleDeleteApplicationAlert}) {
     const [status, setStatus] = useState("")
-    const [statusApplications, setStatusApplications] = useState({})
+    const [statusApplications, setStatusApplications] = useState([])
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
     const applicationCount = applications.length;
@@ -26,7 +26,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
             if (!response.ok) {
                 throw new Error("Failed to find applications.")
             }
-            const data = response.json()
+            const data = await response.json()
             setStatusApplications(data)
         } catch (e) {
             setError(e.message)
