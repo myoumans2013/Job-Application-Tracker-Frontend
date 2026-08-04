@@ -4,7 +4,7 @@ import {useState} from "react";
 
 function ApplicationList({applications, interviews, setInterviews, handleDeleteApplicationAlert}) {
     const [status, setStatus] = useState("")
-    const [statusApplications, setStatusApplications] = useState(null)
+    const [statusApplications, setStatusApplications] = useState({})
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
     const applicationCount = applications.length;
