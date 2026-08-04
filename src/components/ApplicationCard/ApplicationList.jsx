@@ -16,7 +16,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
     }
 
     const applicationsToDisplay = statusApplications.length > 0 ? statusApplications :
-        <div>No applications with this Status.</div>;
+        applications;
 
     // figure out sortby status, utlize a const variable to get the status from the user, then use <select> with <option for all statuses
     const handleSelectStatus = async (status) => {
@@ -59,49 +59,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
                 <option value="GHOSTED">Ghosted</option>
             </select>
 
-            {applicationsToDisplay.map(application => {
-                return (
-
-                    <li className="application-individual-card" key={application.id}>
-
-                        <div className={"application-text"}>
-
-                            <p>
-                                <strong className="text-before-input-box">Company Name: </strong>
-                                <span className="application-card-info">{application.companyName}</span>
-                            </p>
-
-                            <p>
-                                <strong className="text-before-input-box">Job Title: </strong>
-                                <span className="application-card-info">{application.jobTitle}</span>
-                            </p>
-
-                            <p>
-                                <strong className="text-before-input-box">Date Applied: </strong>
-                                <span className="application-card-info">{application.dateApplied}</span>
-                            </p>
-
-                            <p>
-                                <strong className="text-before-input-box">Status: </strong>
-                                <span className="application-card-info">{application.status}</span>
-                            </p>
-
-                            <p>
-                                <strong className="text-before-input-box">Job Link: </strong>
-                                <span className="application-card-info">{application.jobLink}</span>
-                            </p>
-
-                            <p>
-                                <strong className="text-before-input-box">Notes: </strong>
-                                <span className="application-card-info">{application.notes}</span>
-                            </p>
-                        </div>
-                    </li>
-                )
-            })}
-
-
-            {applications.map((application) => {
+            {applicationsToDisplay.map((application) => {
                 const matchingInterviews = interviews.filter((interview) => {
                     return interview.jobApplicationId === application.id;
                 });
