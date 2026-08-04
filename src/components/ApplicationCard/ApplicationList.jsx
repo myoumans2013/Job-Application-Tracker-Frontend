@@ -23,7 +23,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
             setLoading(true)
             const response = await fetch(`https://job-application-tracker-frontend-2o21.onrender.com/api/applications/status/${status}`);
             if (!response.ok) {
-                throw new Error("Failed to find applications.")
+                setError("Failed to find applications.")
             }
             const data = await response.json()
             setStatusApplications(data)
@@ -50,7 +50,8 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
             <span>Total Applications - ({applicationCount})</span>
             <h2>Applications</h2>
 
-            <select onChange={handleOnChange}>
+            <select className={"input-container-input-box"}
+                    onChange={handleOnChange}>
                 <option value="">Select status</option>
                 <option value="APPLIED">Applied</option>
                 <option value="INTERVIEWING">Interviewing</option>
