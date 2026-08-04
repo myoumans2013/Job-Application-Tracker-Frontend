@@ -8,6 +8,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
         e.preventDefault();
         const sortApplications = applications.filter(application =>
             application.status === 'APPLIED');
+        console.log(sortApplications)
 
         return <div>{sortApplications}</div>
     }
