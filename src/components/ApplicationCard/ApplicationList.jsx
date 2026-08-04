@@ -11,6 +11,7 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
 
     const handleOnChange = async (e) => {
         const selectedStatus = e.target.value
+        console.log(selectedStatus)
         setStatus(selectedStatus)
         await handleSelectStatus(status)
     }
