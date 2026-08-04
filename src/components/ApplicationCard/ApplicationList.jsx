@@ -16,8 +16,7 @@ function ApplicationList({
     const applicationCount = applications.length;
 
     // If status is not an empty string, display applications on status
-    const applicationsToDisplay = status ? statusApplications :
-        applications;
+    const applicationsToDisplay = status ? statusApplications : applications;
 
     // Set status back to an empty string/falsy
     const handleShowAllButtonClick = () => {
@@ -79,7 +78,7 @@ function ApplicationList({
                     <option value="GHOSTED">Ghosted</option>
                 </select>
 
-                <button className={"show-all-button"} onClick={handleShowAllButtonClick}>Show all</button>
+                <button className={"show-all-button"} onClick={handleShowAllButtonClick}>Show All</button>
             </div>
 
             {applicationsToDisplay.map((application) => {
