@@ -8,9 +8,21 @@ function ApplicationList({applications, interviews, setInterviews, handleDeleteA
         e.preventDefault();
         const sortApplications = applications.filter(application =>
             application.status === 'APPLIED');
-        console.log(sortApplications)
 
-        return <div>{sortApplications}</div>
+        return <div>
+            {sortApplications.map((applied) => {
+                return (
+                    <li className="application-individual-card" key={applied.id}>
+                        <div className={"application-text"}>
+
+                            <p>
+                                <strong className="text-before-input-box">Company Name: </strong>
+                                <span className="application-card-info">{applied.companyName}</span>
+                            </p>
+                        </div>
+                    </li>
+                )
+            })}</div>
     }
 
     return (
