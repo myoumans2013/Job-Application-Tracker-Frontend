@@ -4,7 +4,8 @@ import InterviewList from "./InterviewList.jsx";
 function ApplicationList({applications, interviews, setInterviews, handleDeleteApplicationAlert}) {
     const applicationCount = applications.length;
 
-    const findAppsByStatus = () => {
+    const findAppsByStatus = (e) => {
+        e.preventDefault();
         const sortApplications = applications.map((application) => {
             if (application.status === 'APPLIED') {
                 return <div>
