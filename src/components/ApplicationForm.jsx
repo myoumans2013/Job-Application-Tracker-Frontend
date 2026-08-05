@@ -9,7 +9,7 @@ function ApplicationForm({applications, setApplications}) {
         dateApplied: "",
         jobLink: "",
         notes: "",
-        status: "APPLIED"
+        status: "Select Status"
     });
 
     // Creates a new Job application
@@ -30,7 +30,7 @@ function ApplicationForm({applications, setApplications}) {
                 return;
             }
             const data = await response.json();
-            setApplications([...applications, data])
+            setApplications([data, ...applications])
         } catch (error) {
             setError(error.message)
         } finally {
@@ -95,11 +95,11 @@ function ApplicationForm({applications, setApplications}) {
                         name={"status"}
                         value={newApplication.status}
                         onChange={handleOnChange}>
-                    <option value="APPLIED">APPLIED</option>
-                    <option value="INTERVIEWING">INTERVIEWING</option>
-                    <option value="OFFER">OFFER</option>
-                    <option value="REJECTED">REJECTED</option>
-                    <option value="GHOSTED">GHOSTED</option>
+                    <option value="APPLIED">Applied</option>
+                    <option value="INTERVIEWING">Interviewing</option>
+                    <option value="OFFER">Offer</option>
+                    <option value="REJECTED">Rejected</option>
+                    <option value="GHOSTED">Ghosted</option>
                 </select>
                 <p>
 
