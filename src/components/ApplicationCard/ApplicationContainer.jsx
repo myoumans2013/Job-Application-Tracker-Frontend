@@ -1,7 +1,7 @@
 import {useState} from "react";
 import ApplicationList from "./ApplicationList.jsx";
 
-function ApplicationContainer({applications, setApplications, interviews, setInterviews, handleRetryApplications}) {
+function ApplicationContainer({interviews, applications, setApplications, setInterviews, handleRetryApplications}) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
@@ -44,10 +44,10 @@ function ApplicationContainer({applications, setApplications, interviews, setInt
 
     return (
         <ApplicationList applications={applications}
-                         interviews={interviews}
                          setInterviews={setInterviews}
                          handleDeleteApplicationAlert={handleDeleteApplicationAlert}
                          handleRetryApplications={handleRetryApplications}
+                         interviews={interviews}
         />
     )
 }
