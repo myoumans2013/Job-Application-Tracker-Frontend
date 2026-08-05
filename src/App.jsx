@@ -80,7 +80,6 @@ function App() {
                 handleRetryApplications={handleRetryApplications}
             />
             <ApplicationForm
-                applications={applications}
                 setApplications={setApplications}
                 interviews={interviews}
             />

@@ -1,6 +1,6 @@
 import {useState} from "react";
 
-function ApplicationForm({applications, setApplications}) {
+function ApplicationForm({setApplications}) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
     const [newApplication, setNewApplication] = useState({
@@ -30,7 +30,10 @@ function ApplicationForm({applications, setApplications}) {
                 return;
             }
             const data = await response.json();
-            setApplications([data, ...applications])
+            setApplications((applications) => [
+                data,
+                ...applications
+            ])
         } catch (error) {
             setError(error.message)
         } finally {
