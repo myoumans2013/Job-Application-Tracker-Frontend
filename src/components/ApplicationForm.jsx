@@ -30,9 +30,9 @@ function ApplicationForm({setApplications}) {
                 return;
             }
             const data = await response.json();
-            setApplications((applications) => [
+            setApplications((currentApplications) => [
                 data,
-                ...applications
+                ...currentApplications
             ])
         } catch (error) {
             setError(error.message)
