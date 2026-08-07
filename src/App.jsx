@@ -72,16 +72,16 @@ function App() {
     return (
         <div className={"main-card"}>
             <Header/>
+            <ApplicationForm
+                setApplications={setApplications}
+                interviews={interviews}
+            />
             <ApplicationContainer
                 applications={applications}
                 setApplications={setApplications}
                 interviews={interviews}
                 setInterviews={setInterviews}
                 handleRetryApplications={handleRetryApplications}
-            />
-            <ApplicationForm
-                setApplications={setApplications}
-                interviews={interviews}
             />
             <Footer/>
         </div>
