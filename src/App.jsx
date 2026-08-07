@@ -72,6 +72,8 @@ function App() {
     return (
         <div className={"main-card"}>
             <Header/>
+            <h2>Info to add for job apps</h2>
+            <h2>LinkedIn Profile Link: www.linkedin.com/in/michael-youmans</h2>
             <ApplicationForm
                 setApplications={setApplications}
                 interviews={interviews}
