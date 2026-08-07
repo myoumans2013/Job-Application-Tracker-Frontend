@@ -9,7 +9,7 @@ function ApplicationForm({setApplications}) {
         dateApplied: "",
         jobLink: "",
         notes: "",
-        status: "Select Status"
+        status: ""
     });
 
     // Creates a new Job application
