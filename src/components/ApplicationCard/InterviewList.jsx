@@ -1,6 +1,7 @@
 import {useState} from "react";
+import {deleteInterview} from "../../api/interviewApi.js";
 
-function InterviewList({matchingInterviews, interviews, setInterviews}) {
+function InterviewList({matchingInterviews, setInterviews}) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
 
@@ -8,18 +9,9 @@ function InterviewList({matchingInterviews, interviews, setInterviews}) {
     const handleDeleteInterview = async (id) => {
         try {
             setLoading(true)
-            const response = await fetch(
-                `https://spring-boot-job-application-api.onrender.com/api/interviews/deleteJobInterviewsByJobAppId/${id}`,
-                {
-                    method: "DELETE"
-                }
-            );
-            if (!response.ok) {
-                setError("Interview was unable to be deleted.");
-                return;
-            }
-            setInterviews(interviews.filter((interview) => interview.id !== id));
-
+            await deleteInterview(id);
+            setInterviews(currentInterviews =>
+                currentInterviews.filter((interview) => interview.id !== id));
         } catch (error) {
             setError(error.message);
         } finally {

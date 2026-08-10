@@ -1,6 +1,7 @@
 import InterviewForm from "./InterviewForm.jsx";
 import InterviewList from "./InterviewList.jsx";
 import {useState} from "react";
+import {selectStatus} from "../../api/applicationApi.js";
 
 function ApplicationList({
                              applications,
@@ -35,12 +36,7 @@ function ApplicationList({
         console.log(status);
         try {
             setLoading(true)
-            const response = await fetch(`https://spring-boot-job-application-api.onrender.com/api/applications/status/${status}`);
-            if (!response.ok) {
-                setError('failed to find applications with the status: ' + status)
-                return;
-            }
-            const data = await response.json()
+            const data = await selectStatus(status)
             setStatusApplications(data)
         } catch (e) {
             setError(e.message)
@@ -70,7 +66,7 @@ function ApplicationList({
             <div className={"row-container"}>
                 <select className={"input-container-status-box"}
                         onChange={handleOnChange}>
-                    <option value="">Filter By Status</option>
+                    <option value="">-- Filter By Status --</option>
                     <option value="APPLIED">Applied</option>
                     <option value="INTERVIEWING">Interviewing</option>
                     <option value="OFFER">Offer</option>

@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {createInterview} from "../../api/interviewApi.js";
 
 function InterviewForm({setInterviews, applicationId}) {
     const [loading, setLoading] = useState(false)
@@ -19,18 +20,7 @@ function InterviewForm({setInterviews, applicationId}) {
                 ...newInterview,
                 jobApplicationId: id,
             };
-            const response = await fetch(`https://spring-boot-job-application-api.onrender.com/api/interviews/${id}`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(interviewToSend)
-            })
-            if (!response.ok) {
-                setError("Failed to create Interview.")
-                return;
-            }
-            const data = await response.json();
+            const data = await createInterview(id, interviewToSend)
             setInterviews((currentInterviews) => [
                 data,
                 ...currentInterviews

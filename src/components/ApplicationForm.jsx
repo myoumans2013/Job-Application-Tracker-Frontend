@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {createApplication} from "../api/applicationApi.js";
 
 function ApplicationForm({setApplications}) {
     const [loading, setLoading] = useState(false)
@@ -18,18 +19,7 @@ function ApplicationForm({setApplications}) {
 
         try {
             setLoading(true)
-            const response = await fetch("https://spring-boot-job-application-api.onrender.com/api/applications", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(newApplication)
-            })
-            if (!response.ok) {
-                setError("Failed to create application.")
-                return;
-            }
-            const data = await response.json();
+            const data = await createApplication(newApplication)
             setApplications((currentApplications) => [
                 data,
                 ...currentApplications
