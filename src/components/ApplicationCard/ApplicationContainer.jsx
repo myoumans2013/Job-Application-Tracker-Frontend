@@ -1,5 +1,6 @@
 import {useState} from "react";
 import ApplicationList from "./ApplicationList.jsx";
+import {deleteApplication} from "../../api/applicationApi.js";
 
 function ApplicationContainer({interviews, applications, setApplications, setInterviews, handleRetryApplications}) {
     const [loading, setLoading] = useState(false)
@@ -17,17 +18,9 @@ function ApplicationContainer({interviews, applications, setApplications, setInt
     const handleDeleteApplication = async (id) => {
         try {
             setLoading(true)
-            const response = await fetch(
-                `https://spring-boot-job-application-api.onrender.com/api/applications/${id}`,
-                {
-                    method: "DELETE"
-                }
-            );
-            if (!response.ok) {
-                setError("Failed to delete application");
-                return;
-            }
-            setApplications(applications.filter((item) => item.id !== id));
+            await deleteApplication(id)
+            setApplications(currentApplications =>
+                currentApplications.filter((item) => item.id !== id));
         } catch (error) {
             setError(error.message);
         } finally {

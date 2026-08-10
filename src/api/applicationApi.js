@@ -9,3 +9,19 @@ export const getApplications = async () => {
 
     return response.json();
 }
+
+// delete Application API
+export const deleteApplication = async (id) => {
+    const response = await fetch(
+        `https://spring-boot-job-application-api.onrender.com/api/applications/${id}`,
+        {
+            method: "DELETE"
+        })
+
+    if (!response.ok) {
+        throw new Error("Cannot delete Application")
+    }
+
+    return response.json();
+
+}
