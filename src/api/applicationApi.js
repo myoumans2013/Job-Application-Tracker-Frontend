@@ -21,7 +21,4 @@ export const deleteApplication = async (id) => {
     if (!response.ok) {
         throw new Error("Cannot delete Application")
     }
-
-    return response.json();
-
 }
