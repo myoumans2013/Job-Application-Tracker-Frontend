@@ -13,7 +13,7 @@ export const getApplications = async () => {
 // delete Application API
 export const deleteApplication = async (id) => {
     const response = await fetch(
-        `https://spring-boot-job-application-api.onrender.com/api/applications/${id}`,
+        `${API_BASE_URL}/api/applications/${id}`,
         {
             method: "DELETE"
         })
