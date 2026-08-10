@@ -93,3 +93,9 @@ Supabase PostgreSQL
 This project was built to strengthen my full-stack development skills by connecting a React frontend to a Spring Boot REST API.
 
 The project demonstrates React component design, state management, REST API communication, CRUD operations, frontend/backend synchronization, environment configuration, error handling, and deployment.
+
+## Upcoming Updates
+
+- Improve application and interview update functionality
+- Add authentication and authorization with Spring Security
+- Continue improving frontend error handling and user experience
