@@ -1,7 +1,6 @@
 # Job Application Tracker Frontend
 
-A React + Vite frontend for managing job applications and interviews. The application communicates with a Spring Boot
-REST API and is deployed on Render.
+A React + Vite frontend for managing job applications and interviews. The application communicates with a Spring Boot REST API and is deployed on Render.
 
 ## Tech Stack
 
@@ -10,26 +9,30 @@ REST API and is deployed on Render.
 - JavaScript
 - CSS
 - Spring Boot REST API
-- PostgreSQL (Supabase)
 - Render
 
 ## Features
 
-- View all job applications
-- Create new job applications
-- Update existing applications
-- Delete applications
-- View interview history
-- Add interviews to applications
-- Display application status, date applied, notes, job link, and interview information
-- Communicate with a deployed Spring Boot backend
+- View, create, update, and delete job applications
+- Filter applications by status
+- View interview history for each application
+- Add and delete interviews
+- Display application status, date applied, notes, and job links
+- Loading and error handling
+- Delete confirmation
+- Separate API request logic from React components
+- Separate local and production configurations
 
 ## Project Structure
 
-```
+```text
 src/
+├── api/
+│   ├── applicationApi.js
+│   └── interviewApi.js
 ├── components/
 │   ├── Header
+│   ├── ApplicationContainer
 │   ├── ApplicationForm
 │   ├── ApplicationList
 │   └── InterviewForm
@@ -38,7 +41,17 @@ src/
 └── main.jsx
 ```
 
-## Running Locally
+## Local Development
+
+The frontend uses Vite environment variables to connect to the local Spring Boot backend during development.
+
+```text
+React
+  ↓
+Spring Boot REST API
+  ↓
+Docker PostgreSQL
+```
 
 Install dependencies:
 
@@ -52,14 +65,37 @@ Start the development server:
 npm run dev
 ```
 
+Create a production build:
+
+```bash
+npm run build
+```
+
 ## Deployment
 
-- Frontend deployed with **Render Static Sites**
-- Backend deployed with **Render Web Services**
-- Database hosted on **Supabase PostgreSQL**
+The production application uses:
+
+```text
+Render Frontend
+      ↓
+Render Spring Boot Backend
+      ↓
+Supabase PostgreSQL
+```
+
+- Frontend hosted with Render Static Sites
+- Backend hosted with Render Web Services
+- Production PostgreSQL database hosted with Supabase
+- Local PostgreSQL database managed with Docker
 
 ## Project Purpose
 
-This project was built to strengthen full-stack development skills by connecting a React frontend to a Spring Boot REST
-API. It demonstrates component-based UI development, state management, API communication, CRUD operations, and
-deployment using Render and Supabase.
+This project was built to strengthen my full-stack development skills by connecting a React frontend to a Spring Boot REST API.
+
+The project demonstrates React component design, state management, REST API communication, CRUD operations, frontend/backend synchronization, environment configuration, error handling, and deployment.
+
+## Upcoming Updates
+
+- Improve application and interview update functionality
+- Add authentication and authorization with Spring Security
+- Continue improving frontend error handling and user experience
