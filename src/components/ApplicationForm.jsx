@@ -5,8 +5,8 @@ function ApplicationForm({setApplications}) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
     const [newApplication, setNewApplication] = useState({
-        companyName: " ",
-        jobTitle: " ",
+        companyName: "",
+        jobTitle: "",
         dateApplied: "",
         jobLink: "",
         notes: "",
@@ -25,8 +25,8 @@ function ApplicationForm({setApplications}) {
                 ...currentApplications
             ])
             setNewApplication({
-                companyName: " ",
-                jobTitle: " ",
+                companyName: "",
+                jobTitle: "",
                 dateApplied: "",
                 jobLink: "",
                 notes: "",
