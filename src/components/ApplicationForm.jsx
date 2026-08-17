@@ -24,6 +24,14 @@ function ApplicationForm({setApplications}) {
                 data,
                 ...currentApplications
             ])
+            setNewApplication({
+                companyName: " ",
+                jobTitle: " ",
+                dateApplied: "",
+                jobLink: "",
+                notes: "",
+                status: "APPLIED"
+            })
         } catch (error) {
             setError(error.message)
         } finally {
