@@ -4,8 +4,13 @@ import {createApplication} from "../api/applicationApi.js";
 function ApplicationForm({setApplications}) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState("")
-    const today = new Date()
-    const formattedDate = today.toLocaleDateString();
+    const today = new Date();
+
+    const formattedDate = [
+        today.getFullYear(),
+        String(today.getMonth() + 1).padStart(2, "0"),
+        String(today.getDate()).padStart(2, "0"),
+    ].join("-");
     const [newApplication, setNewApplication] = useState({
         companyName: "",
         jobTitle: "",
