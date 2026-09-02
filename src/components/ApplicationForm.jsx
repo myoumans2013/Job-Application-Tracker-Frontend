@@ -34,7 +34,7 @@ function ApplicationForm({setApplications}) {
             setNewApplication({
                 companyName: "",
                 jobTitle: "",
-                dateApplied: "",
+                dateApplied: formattedDate,
                 jobLink: "",
                 notes: "",
                 status: "APPLIED"
